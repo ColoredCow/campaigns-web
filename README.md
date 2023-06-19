@@ -1,4 +1,7 @@
-This is a email-campaigns project.
+# Campaigns-Web 🚀
+
+## Introduction
+👋 Welcome to ColoredCow Campaigns web.
 
 ## Getting Started
 
@@ -7,7 +10,7 @@ Clone the repository
    git clone https://github.com/ColoredCow/campaigns-web.git
    ```
 
-Switch to project root directory
+Switch to the project root directory
 	```
 	cd campaigns-web
 	```

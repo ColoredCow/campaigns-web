@@ -1,0 +1,17 @@
+name: Coding Standards
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  ESLint:
+    name: ESlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Pint check
+        run: npm run lint

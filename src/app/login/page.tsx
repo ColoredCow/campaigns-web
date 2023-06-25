@@ -1,3 +1,6 @@
+import Button from '@/components/Button';
+import Input from '@/components/Input';
+
 const Login = () => {
   return (
     <div className="flex min-h-screen">
@@ -10,16 +13,21 @@ const Login = () => {
           fugiat ratione eveniet modi.
         </p>
       </div>
-      <div className="flex flex-1 flex-col justify-center bg-slate-200 px-20">
-        <h3 className="mb-6 text-2xl">Login</h3>
-        <div className="flex flex-col">
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email" />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" />
-        </div>
+      <div className="flex flex-1 flex-col justify-center bg-slate-100 px-20">
+        <h3 className="mb-6 text-2xl">Sign in</h3>
+        <Input
+          name="email"
+          type="email"
+          label="Email"
+          placeholder="Enter your email"
+        />
+        <Input
+          name="password"
+          type="password"
+          label="Password"
+          placeholder="Enter your password"
+        />
+        <Button>Sign in</Button>
       </div>
     </div>
   );

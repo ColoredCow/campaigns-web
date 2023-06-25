@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 
@@ -27,7 +29,7 @@ const Login = () => {
           label="Password"
           placeholder="Enter your password"
         />
-        <Button>Sign in</Button>
+        <Button onClick={() => console.log('hello')}>Sign in</Button>
       </div>
     </div>
   );

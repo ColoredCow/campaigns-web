@@ -1,8 +1,8 @@
 const Button = ({
-  // onClick,
+  onClick,
   children,
 }: {
-  // onClick: () => void;
+  onClick: () => void;
   children: React.ReactNode;
 }) => {
   return (
@@ -10,7 +10,7 @@ const Button = ({
       <button
         type="button"
         className="flex rounded-lg bg-indigo-700 px-4 py-2 text-white hover:bg-indigo-800"
-        // onClick={onClick}
+        onClick={onClick}
       >
         {children}
       </button>

@@ -3,7 +3,7 @@
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 
-const Login = () => {
+const Page = () => {
   return (
     <div className="flex min-h-screen">
       <div className="flex flex-1 flex-col justify-center bg-gray-800 px-20 text-white">
@@ -35,4 +35,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Page;

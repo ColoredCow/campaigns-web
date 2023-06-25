@@ -1,12 +1,26 @@
 'use client';
 
+import { getCampaigns } from '@/apis/campaign';
 import Button from '@/components/Button';
 import Table from '@/components/Table';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
-// import Button from '@/components/Button';
+import { useEffect, useState } from 'react';
 // import Input from '@/components/Input';
 
 const Page = () => {
+  const [campaigns, setCampaigns] = useState([]);
+
+  useEffect(() => {
+    const fetchCampaigns = async () => {
+      setCampaigns(await getCampaigns());
+    };
+    fetchCampaigns();
+  }, []);
+
+  useEffect(() => {
+    console.log('campaigns...', campaigns);
+  }, [campaigns]);
+
   return (
     <div className="flex min-h-screen flex-col">
       <div className="flex justify-between">

@@ -5,7 +5,7 @@ const AuthNav = () => {
         <div className="text-xl font-bold">Campaigns</div>
       </div>
       <div>
-        <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-indigo-500 text-sm text-white">
+        <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-indigo-700 text-sm text-white">
           VR
         </div>
       </div>

@@ -5,29 +5,29 @@ export default function AuthLayout({
 }) {
   return (
     <div>
-      <nav className="flex justify-between bg-gray-700 px-6 py-3 text-white">
+      <nav className="flex items-center justify-between border-b px-6 py-3">
         <div>
-          <div className="text-xl">Campaigns</div>
+          <div className="text-xl font-bold">Campaigns</div>
         </div>
         <div>
           <div>Vaibhav</div>
         </div>
       </nav>
       <div className="flex">
-        <nav className="sticky top-0 flex h-screen w-[20%] flex-col bg-gray-100 px-2 py-6">
-          <div className="rounded px-6 py-3 text-gray-500 hover:bg-gray-200">
+        <nav className="sticky top-0 flex w-[20%] flex-col px-2 py-6">
+          <div className="rounded px-6 py-3 font-light text-gray-500 hover:bg-gray-200">
             Campaigns
           </div>
-          <div className="rounded px-6 py-3 text-gray-500 hover:bg-gray-200">
+          <div className="rounded px-6 py-3 font-light text-gray-500 hover:bg-gray-200">
             Subscriber
           </div>
-          <div className="rounded px-6 py-3 text-gray-500 hover:bg-gray-200">
+          <div className="rounded px-6 py-3 font-light text-gray-500 hover:bg-gray-200">
             Tags
           </div>
-          <div className="rounded bg-indigo-200 px-6 py-3 text-indigo-600">
+          <div className="rounded bg-indigo-200 px-6 py-3 font-semibold text-indigo-600">
             Sender Identities
           </div>
-          <div className="rounded px-6 py-3 text-gray-500 hover:bg-gray-200">
+          <div className="rounded px-6 py-3 font-light text-gray-500 hover:bg-gray-200">
             Users
           </div>
         </nav>

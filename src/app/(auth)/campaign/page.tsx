@@ -8,7 +8,10 @@ import Table from '@/components/Table';
 const Page = () => {
   return (
     <div className="flex min-h-screen flex-col">
-      <h2 className="mb-4 text-2xl">Campaigns (277)</h2>
+      <h2 className="mb-4 text-2xl">
+        <span>Campaigns</span>
+        <span className="ml-1 font-light text-gray-500">(277)</span>
+      </h2>
       <Table>
         <h1>ehlo</h1>
       </Table>

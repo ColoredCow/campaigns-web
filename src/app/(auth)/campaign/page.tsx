@@ -16,7 +16,9 @@ const Page = () => {
           <span className="ml-1 text-2xl font-light text-gray-500">(277)</span>
         </h2>
         <div>
-          <Button onClick={() => {}}>New Campaign</Button>
+          <Button onClick={() => console.log('new campaign')}>
+            New Campaign
+          </Button>
         </div>
       </div>
       <Table>

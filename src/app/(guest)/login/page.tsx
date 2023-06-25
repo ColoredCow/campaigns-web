@@ -2,8 +2,31 @@
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
+import { useAuth } from '@/hooks/auth';
+import { useEffect, useState } from 'react';
 
 const Page = () => {
+  const [errors, setErrors] = useState([]);
+
+  const { login, isLoading, user } = useAuth({ middleware: 'guest' });
+
+  useEffect(() => {
+    console.log('user....', user);
+    console.log('errors....', errors);
+  }, [user, errors]);
+
+  const submitForm = async () => {
+    login({
+      email: 'vaibhav@coloredcow.com',
+      password: 'coloredcow',
+      setErrors,
+    });
+  };
+
+  if (isLoading || user) {
+    return <></>;
+  }
+
   return (
     <div className="flex min-h-screen">
       <div className="flex flex-1 flex-col justify-center bg-gray-800 px-20 text-white">
@@ -29,7 +52,7 @@ const Page = () => {
           label="Password"
           placeholder="Enter your password"
         />
-        <Button onClick={() => console.log('hello')}>Sign in</Button>
+        <Button onClick={submitForm}>Sign in</Button>
       </div>
     </div>
   );

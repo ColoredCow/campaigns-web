@@ -12,11 +12,16 @@ export interface Campaign {
   email_body: string,
   created_at: string,
   sender_identity: SenderIdentity,
+  tag: Tag,
 }
 
 export interface SenderIdentity {
   name: string,
   email: string,
+}
+
+export interface Tag {
+  name: string,
 }
 
 export interface CampaignResource extends ApiResource {

@@ -51,7 +51,7 @@ const Sidebar = () => {
   ];
   const pathname = usePathname();
   return (
-    <nav className="sticky top-0 flex w-full flex-col px-2 py-10">
+    <nav className="sticky top-14 flex w-full flex-col px-2 py-10">
       {routes.map((route, index) => {
         const isActive = pathname === route.href;
         return (

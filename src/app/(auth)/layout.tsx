@@ -1,4 +1,4 @@
-import AuthNav from '@/components/AuthNav';
+import AuthNav from '@/components/Navbar/AuthNav';
 import Sidebar from '@/components/Sidebar';
 
 export default function AuthLayout({
@@ -9,11 +9,11 @@ export default function AuthLayout({
   return (
     <div className="">
       <AuthNav />
-      <div className="flex">
+      <div className="mt-14 flex">
         <div className="w-[17%]">
           <Sidebar />
         </div>
-        <div className="w-[83%] p-10">{children}</div>
+        <div className="w-[83%] px-9 py-10">{children}</div>
       </div>
     </div>
   );

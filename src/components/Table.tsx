@@ -5,14 +5,14 @@ const Table = ({ data }: { data: TableData }) => {
 
   const LoadingSkeleton = () => {
     return [...Array(10)].map((_, count) => (
-      <tr className={`${count % 2 ? 'bg-white' : 'bg-gray-200'}`} key={count}>
+      <tr className={`${count % 2 ? 'bg-white' : 'bg-gray-100'}`} key={count}>
         {data.headers.map((_, index) => {
           let classes = 'py-7 px-4';
           if (index === 0) classes += ' rounded-l-md';
           if (index === data.headers.length - 1) classes += ' rounded-r-md';
           return (
             <td className={classes} key={index}>
-              <div className="h-3 animate-pulse rounded-md bg-gray-300"></div>
+              <div className="h-3 w-[80%] animate-pulse rounded-md bg-gray-300"></div>
             </td>
           );
         })}

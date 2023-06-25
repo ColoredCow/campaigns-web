@@ -5,6 +5,7 @@ import Button from '@/components/Button';
 import Table from '@/components/Table';
 import { Campaign, CampaignResource, TableData } from '@/utils/types';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 // import Input from '@/components/Input';
@@ -31,24 +32,29 @@ const Page = () => {
         return [
           <>
             <span className="truncate">{campaign.email_subject}</span>
-            <span className="text-xs text-gray-500">THDC-IHET</span>
+            <span className="text-gray-500">{campaign.tag.name}</span>
           </>,
           <>
             <span>{moment(campaign.created_at).format('MMM DD, YYYY')}</span>
-            <span className="text-xs text-gray-500">
+            <span className="text-gray-500">
               {moment(campaign.created_at).format('hh:MM A')}
             </span>
           </>,
           <>
             <span>{campaign.sender_identity.name}</span>
-            <span className="text-xs text-gray-500">
+            <span className="text-gray-500">
               {campaign.sender_identity.email}
             </span>
           </>,
           <>
-            <a href="#" className="font-medium text-blue-600 hover:underline">
-              Edit
-            </a>
+            <div className="flex justify-end">
+              <a href="#" className="text-gray-400 hover:text-indigo-700">
+                <PencilSquareIcon className="h-5 w-5" />
+              </a>
+              <a href="#" className="ml-2 text-gray-400 hover:text-red-600">
+                <TrashIcon className="h-5 w-5" />
+              </a>
+            </div>
           </>,
         ];
       });
@@ -60,9 +66,9 @@ const Page = () => {
   }, [campaigns]);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col">
       <div className="flex justify-between">
-        <h2 className="mb-8 flex items-end">
+        <h2 className="mb-7 flex items-end">
           <EnvelopeIcon className="h-9 w-9" />
           <span className="ml-1 text-3xl">Campaigns</span>
           {campaigns && (

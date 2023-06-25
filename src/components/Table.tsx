@@ -1,12 +1,31 @@
-const Table = ({ children }: { children: React.ReactNode }) => {
-  const headers = ['Details', 'Sent on', 'Sender identity'];
-  const rows = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import { TableData } from '@/utils/types';
+
+const Table = ({ data }: { data: TableData }) => {
+  console.log('table data...', data);
+
+  const LoadingSkeleton = () => {
+    return [...Array(10)].map((_, count) => (
+      <tr className={`${count % 2 ? 'bg-white' : 'bg-gray-200'}`} key={count}>
+        {data.headers.map((_, index) => {
+          let classes = 'py-7 px-4';
+          if (index === 0) classes += ' rounded-l-md';
+          if (index === data.headers.length - 1) classes += ' rounded-r-md';
+          return (
+            <td className={classes} key={index}>
+              <div className="h-3 animate-pulse rounded-md bg-gray-300"></div>
+            </td>
+          );
+        })}
+      </tr>
+    ));
+  };
+
   return (
     <div className="relative overflow-x-auto">
       <table className="w-full table-auto text-left text-sm">
         <thead className="rounded text-xs font-bold uppercase">
           <tr>
-            {headers.map((header, index) => {
+            {data.headers.map((header, index) => {
               return (
                 <th className="p-4" key={index}>
                   {header}
@@ -16,306 +35,30 @@ const Table = ({ children }: { children: React.ReactNode }) => {
           </tr>
         </thead>
         <tbody className="font-light">
-          <tr className="bg-gray-100">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-white">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-gray-100">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-white">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-gray-100">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-white">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-gray-100">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-white">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-gray-100">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-white">
-            <td className="rounded-l-md p-4">
-              <div className="flex flex-col">
-                <span className="truncate">
-                  Congratulations on completing Graduation! Discover Job-ready
-                  Skills with ColoredCow Software Training.{' '}
-                </span>
-                <span className="text-xs text-gray-500">THDC-IHET</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Jun 24, 2023</span>
-                <span className="text-xs text-gray-500">07:36 pm</span>
-              </div>
-            </td>
-            <td className="p-4">
-              <div className="flex flex-col ">
-                <span>Satendra Rawat</span>
-                <span className="text-xs text-gray-500">
-                  satendra@coloredcow.com
-                </span>
-              </div>
-            </td>
-            <td className="rounded-r-md p-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline">
-                Edit
-              </a>
-            </td>
-          </tr>
+          {data.rows.length ? (
+            data.rows.map((row, rowIndex) => {
+              return (
+                <tr
+                  className={`${rowIndex % 2 ? 'bg-white' : 'bg-gray-100'}`}
+                  key={rowIndex}
+                >
+                  {row.map((column, columnIndex) => {
+                    let classes = 'p-4';
+                    if (columnIndex === 0) classes += ' rounded-l-md';
+                    if (columnIndex === row.length - 1)
+                      classes += ' rounded-r-md';
+                    return (
+                      <td className={classes} key={columnIndex}>
+                        <div className="flex flex-col">{column}</div>
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })
+          ) : (
+            <LoadingSkeleton />
+          )}
         </tbody>
       </table>
     </div>

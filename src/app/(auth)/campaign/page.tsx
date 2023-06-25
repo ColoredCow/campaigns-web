@@ -8,7 +8,7 @@ import Table from '@/components/Table';
 const Page = () => {
   return (
     <div className="flex min-h-screen flex-col">
-      <h2 className="mb-4 text-2xl">
+      <h2 className="mb-4 text-3xl">
         <span>Campaigns</span>
         <span className="ml-1 font-light text-gray-500">(277)</span>
       </h2>

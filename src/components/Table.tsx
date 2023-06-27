@@ -43,13 +43,13 @@ const Table = ({ data }: { data: TableData }) => {
                   key={rowIndex}
                 >
                   {row.map((column, columnIndex) => {
-                    let classes = 'p-4';
+                    let classes = 'p-4 w-[70%] align-baseline';
                     if (columnIndex === 0) classes += ' rounded-l-md';
                     if (columnIndex === row.length - 1)
                       classes += ' rounded-r-md';
                     return (
                       <td className={classes} key={columnIndex}>
-                        <div className="flex flex-col">{column}</div>
+                        {column}
                       </td>
                     );
                   })}

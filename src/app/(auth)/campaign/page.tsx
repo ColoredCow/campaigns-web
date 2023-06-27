@@ -31,20 +31,20 @@ const Page = () => {
       const rows = campaigns.data.map((campaign: Campaign) => {
         return [
           <>
-            <span className="truncate">{campaign.email_subject}</span>
-            <span className="text-gray-500">{campaign.tag.name}</span>
+            <div>{campaign.email_subject}</div>
+            <div className="text-gray-500">{campaign.tag.name}</div>
           </>,
           <>
-            <span>{moment(campaign.created_at).format('MMM DD, YYYY')}</span>
-            <span className="text-gray-500">
+            <div>{moment(campaign.created_at).format('MMM DD, YYYY')}</div>
+            <div className="text-gray-500">
               {moment(campaign.created_at).format('hh:MM A')}
-            </span>
+            </div>
           </>,
           <>
-            <span>{campaign.sender_identity.name}</span>
-            <span className="text-gray-500">
+            <div>{campaign.sender_identity.name}</div>
+            <div className="text-gray-500">
               {campaign.sender_identity.email}
-            </span>
+            </div>
           </>,
           <>
             <div className="flex justify-end">

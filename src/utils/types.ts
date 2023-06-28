@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import internal from 'stream';
 
 export interface ApiResource {
   total: number;
@@ -32,7 +33,16 @@ export interface Subscribers {
 }
 
 export interface SenderIdentity {
+  total: ReactNode;
   data: any;
+  name: string;
+  email: string;
+}
+
+export interface Users {
+  data: any;
+  total: ReactNode;
+  map(arg0: (user: Users) => import('react').JSX.Element[]): unknown;
   name: string;
   email: string;
 }

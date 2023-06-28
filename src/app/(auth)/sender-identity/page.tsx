@@ -68,11 +68,11 @@ const Page = () => {
         <h2 className="mb-7 flex items-end">
           <AtSymbolIcon className="h-9 w-9" />
           <span className="ml-1 text-3xl">Sender Identities</span>
-          {/* {campaigns && (
+          {senderIdentities && (
             <span className="ml-1 text-2xl font-light text-gray-500">
-              ({campaigns.total})
+              ({senderIdentities.total})
             </span>
-          )} */}
+          )}
         </h2>
         <div>
           <Button onClick={() => console.log('new campaign')}>

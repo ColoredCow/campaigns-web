@@ -32,7 +32,7 @@ const Page = () => {
         return [
           <>
             <div>{campaign.email_subject}</div>
-            <div className="text-gray-500">{campaign.tag.name}</div>
+            {/* <div className="text-gray-500">{campaign.tag.name}</div> */}
           </>,
           <>
             <div>{moment(campaign.created_at).format('MMM DD, YYYY')}</div>
@@ -41,9 +41,10 @@ const Page = () => {
             </div>
           </>,
           <>
-            <div>{campaign.sender_identity.name}</div>
+            {console.log(campaign, '-->campaign')}
+            {/* <div>{campaign.sender_identity.name}</div> */}
             <div className="text-gray-500">
-              {campaign.sender_identity.email}
+              {/* {campaign.sender_identity.email} */}
             </div>
           </>,
           <>

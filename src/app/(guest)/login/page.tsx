@@ -17,8 +17,8 @@ const Page = () => {
 
   const submitForm = async () => {
     login({
-      email: 'vaibhav@coloredcow.com',
-      password: 'coloredcow',
+      email: 'ayush.uniyal@coloredcow.in',
+      password: 'Ayush',
       setErrors,
     });
   };

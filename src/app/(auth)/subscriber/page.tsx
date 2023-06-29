@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { Subscribers, TableData } from '@/utils/types';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
+import Link from 'next/link';
 
 const Page = () => {
   const [subscribers, setSubscribers] = useState<Subscribers | undefined>(
@@ -75,12 +76,15 @@ const Page = () => {
           )}
         </h2>
         <div className="flex">
-          <Button
-            className="mr-2"
-            onClick={() => console.log('new subscriber')}
-          >
-            New Subscriber
-          </Button>
+          <div className="mr-2">
+            <Link
+              type="button"
+              className="flex rounded-lg bg-indigo-700 px-4 py-2 text-white hover:bg-indigo-800"
+              href="/subscriber/create"
+            >
+              New Subscriber
+            </Link>
+          </div>
           <Button onClick={() => console.log('bulk upload')}>
             Bulk upload
           </Button>

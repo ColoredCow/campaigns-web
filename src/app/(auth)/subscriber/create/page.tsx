@@ -88,6 +88,7 @@ const Page = () => {
             placeholder="Enter Phone"
             value={formik.values.phone}
             onChange={formik.handleChange}
+            optional={true}
           />
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">

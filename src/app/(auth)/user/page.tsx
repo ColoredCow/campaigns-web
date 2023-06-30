@@ -2,11 +2,11 @@
 
 import { getUsers } from '@/apis/user';
 import Table from '@/components/Table';
-import Button from '@/components/Button';
 import { Users, TableData } from '@/utils/types';
 import { useEffect, useState } from 'react';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { UsersIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 // import Input from '@/components/Input';
 
 const Page = () => {
@@ -30,7 +30,6 @@ const Page = () => {
         return [
           <>
             <div>{user.name}</div>
-            {/* <div className="text-gray-500">{campaign.tag.name}</div> */}
           </>,
           <>
             <div>{user.email}</div>
@@ -67,9 +66,12 @@ const Page = () => {
           )}
         </h2>
         <div>
-          <Button onClick={() => console.log('new campaign')}>
+          <Link
+            className="flex rounded-lg bg-indigo-700 px-4 py-2 text-white hover:bg-indigo-800"
+            href="/user/create"
+          >
             Create user
-          </Button>
+          </Link>
         </div>
       </div>
       <Table data={tableData} />

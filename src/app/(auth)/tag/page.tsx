@@ -1,13 +1,13 @@
 'use client';
 
 import { getTags } from '@/apis/tag';
-import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Table from '@/components/Table';
 import { Tag, TableData } from '@/utils/types';
 import { TagIcon } from '@heroicons/react/24/outline';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 const Page = () => {
   const [tags, setTags] = useState<Tag | undefined>(undefined);
@@ -29,19 +29,11 @@ const Page = () => {
         return [
           <>
             <div>{tag.name}</div>
-            {/* <div className="text-gray-500">{campaign.tag.name}</div> */}
           </>,
+          <>{/* VALID SUBSCRIBERS Column Data */}</>,
           <>
-            {/* <div>{moment(campaign.created_at).format('MMM DD, YYYY')}</div>
             <div className="text-gray-500">
-              {moment(campaign.created_at).format('hh:MM A')}
-            </div> */}
-          </>,
-          <>
-            {console.log(tag, '-->campaign')}
-            {/* <div>{campaign.sender_identity.name}</div> */}
-            <div className="text-gray-500">
-              {/* {campaign.sender_identity.email} */}
+              {/* INVALID SUBSCRIBERS Column Data */}
             </div>
           </>,
           <>
@@ -81,7 +73,12 @@ const Page = () => {
           <Input label="" type="text" placeholder="Search" name="search" />
         </div>
         <div>
-          <Button onClick={() => console.log('new tag')}>Create Tag</Button>
+          <Link
+            className="flex rounded-lg bg-indigo-700 px-4 py-2 text-white hover:bg-indigo-800"
+            href="/tag/create"
+          >
+            Create Tag
+          </Link>
         </div>
       </div>
       <Table data={tableData} />

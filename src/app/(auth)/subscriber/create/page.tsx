@@ -6,14 +6,16 @@ import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { createSubscribers, getTagList } from '@/apis/subscriber';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import Select from '@/components/Select';
+import Select from 'react-select';
 import { useEffect, useState } from 'react';
 import { Tag } from '@/utils/types';
 
 const Page = () => {
   const [tags, setTags] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState();
 
   const onSubmit = async (values: any) => {
+    values.tags = selectedOptions;
     await createSubscribers(values);
   };
 
@@ -24,12 +26,23 @@ const Page = () => {
     fetchTagLists();
   }, []);
 
+  function handleSelect(data: any) {
+    setSelectedOptions(data);
+  }
+
+  const tagsList =
+    Array.isArray(tags.data) && tags.data.length > 0
+      ? tags.data.map((tag: any) => ({
+          value: tag.id,
+          label: tag.name,
+        }))
+      : [];
+
   const formik = useFormik({
     initialValues: {
       email: '',
       name: '',
       phone: '',
-      tag: '',
     },
     onSubmit: onSubmit,
     validationSchema: yup.object({
@@ -40,7 +53,6 @@ const Page = () => {
 
   return (
     <>
-      {console.log(tags.data, '-->tags')}
       <div className="flex justify-between">
         <h2 className="mb-7 flex items-end">
           <UserGroupIcon className="h-9 w-9" />
@@ -77,14 +89,20 @@ const Page = () => {
             value={formik.values.phone}
             onChange={formik.handleChange}
           />
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              Select List
+            </label>
+            <Select
+              options={tagsList}
+              placeholder="Select Tags"
+              value={selectedOptions}
+              onChange={handleSelect}
+              isSearchable={true}
+              isMulti
+            />
+          </div>
         </div>
-        <Select
-          options={tags.data || []}
-          value={formik.values.tag}
-          onChange={formik.handleChange}
-          name="tag"
-          label="Select lists"
-        />
         <Button
           className="btn rounded-3 font-golas-600 fs-16 w-203 btn-curious-blue py-2 text-center text-white"
           type="submit"

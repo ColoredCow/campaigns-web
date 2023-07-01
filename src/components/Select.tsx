@@ -13,9 +13,6 @@ const Select = ({
   name: string;
   label: string;
 }) => {
-  {
-    console.log(options, 'options');
-  }
   return (
     <div className={`mb-4 flex flex-col ${className}`}>
       <label

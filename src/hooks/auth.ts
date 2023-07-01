@@ -2,6 +2,7 @@ import api from '@/utils/api';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
+import { setCookie, parseCookies, destroyCookie } from 'nookies';
 
 type loginProps = {
   setErrors: any;
@@ -49,10 +50,12 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
     await api
       .post('/api/login', props)
       .then(async (resp) => {
-        {
-          console.log(resp.data, '--> resp.data');
-        }
         setAuthToken(resp.data);
+        // Set authentication token as a cookie
+        setCookie(null, 'auth_token', resp.data, {
+          maxAge: 30 * 24 * 60 * 60,
+          path: '/',
+        });
         await mutate();
         router.push('/campaign');
       })
@@ -65,16 +68,29 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
   const logout = async () => {
     await api.post('/api/logout');
     mutate(null);
+    destroyCookie(null, 'auth_token'); // Remove the auth token cookie
     router.push('/login');
   };
 
   useEffect(() => {
+    const cookies = parseCookies();
+
     if (user || error) {
       setIsLoading(false);
     }
 
     if (middleware == 'guest' && user) router.push('/campaign');
     if (middleware == 'auth' && error) router.push('/login');
+
+    // Check if auth token cookie exists
+    if (!user && !error && cookies.auth_token) {
+      setAuthToken(cookies.auth_token);
+      mutate();
+    }
+
+    if (!cookies.auth_token) {
+      router.push('/login');
+    }
   }, [user, error, middleware, router]);
 
   return {

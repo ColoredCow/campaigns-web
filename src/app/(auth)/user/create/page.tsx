@@ -6,10 +6,19 @@ import { UsersIcon } from '@heroicons/react/24/outline';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { createUser } from '@/apis/user';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
+  const router = useRouter();
   const onSubmit = async (values: any) => {
-    await createUser(values);
+    try {
+      await createUser(values);
+      toast.success('User created successfully');
+      router.back();
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
   };
 
   const formik = useFormik({

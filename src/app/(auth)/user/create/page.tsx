@@ -72,7 +72,7 @@ const Page = () => {
               errorMessage={formik.errors.email}
             />
             <Input
-              type="text"
+              type="password"
               name="password"
               label="Password"
               placeholder="Enter Password"
@@ -82,7 +82,7 @@ const Page = () => {
               errorMessage={formik.errors.password}
             />
             <Input
-              type="text"
+              type="password"
               name="confirmPassowrd"
               label="Confirm Password"
               placeholder="Enter Confirm Password"

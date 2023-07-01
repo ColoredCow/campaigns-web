@@ -68,7 +68,7 @@ const Page = () => {
       <div className="flex justify-between">
         <h2 className="mb-7 flex items-end">
           <AtSymbolIcon className="h-9 w-9" />
-          <span className="ml-1 text-3xl">Sender Identitie</span>
+          <span className="ml-1 text-3xl">Sender Identities</span>
           {senderIdentities && (
             <span className="ml-1 text-2xl font-light text-gray-500">
               ({senderIdentities.total})

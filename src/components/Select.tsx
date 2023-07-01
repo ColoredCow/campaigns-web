@@ -5,6 +5,8 @@ const Select = ({
   className,
   name,
   label,
+  mandatoryField,
+  errorMessage,
 }: {
   options: [];
   value: any;
@@ -12,10 +14,9 @@ const Select = ({
   className?: string;
   name: string;
   label: string;
+  mandatoryField?: boolean;
+  errorMessage?: string;
 }) => {
-  {
-    console.log(options, 'options');
-  }
   return (
     <div className={`mb-4 flex flex-col ${className}`}>
       <label
@@ -39,6 +40,11 @@ const Select = ({
             </option>
           ))}
       </select>
+      {mandatoryField && (
+        <div className="text-sm font-semibold italic text-red-500">
+          {errorMessage}
+        </div>
+      )}
     </div>
   );
 };

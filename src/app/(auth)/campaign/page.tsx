@@ -1,13 +1,13 @@
 'use client';
 
 import { getCampaigns } from '@/apis/campaign';
-import Button from '@/components/Button';
 import Table from '@/components/Table';
 import { Campaign, CampaignResource, TableData } from '@/utils/types';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 // import Input from '@/components/Input';
 
 const Page = () => {
@@ -41,7 +41,6 @@ const Page = () => {
             </div>
           </>,
           <>
-            {console.log(campaign, '-->campaign')}
             {/* <div>{campaign.sender_identity.name}</div> */}
             <div className="text-gray-500">
               {/* {campaign.sender_identity.email} */}
@@ -79,9 +78,12 @@ const Page = () => {
           )}
         </h2>
         <div>
-          <Button onClick={() => console.log('new campaign')}>
+          <Link
+            className="flex rounded-lg bg-indigo-700 px-4 py-2 text-white hover:bg-indigo-800"
+            href="/campaign/create"
+          >
             New Campaign
-          </Button>
+          </Link>
         </div>
       </div>
       <Table data={tableData} />

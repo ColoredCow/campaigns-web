@@ -8,15 +8,25 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Select from 'react-select';
 import { useEffect, useState } from 'react';
-import { Tag } from '@/utils/types';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
+  const router = useRouter();
   const [tags, setTags] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState();
 
   const onSubmit = async (values: any) => {
-    values.tags = selectedOptions;
-    await createSubscribers(values);
+    values.tags = selectedOptions.map(
+      (selectedOption: { value: any }) => selectedOption.value
+    );
+    try {
+      await createSubscribers(values);
+      toast.success('Subscriber created successfully');
+      router.back();
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
   };
 
   useEffect(() => {
@@ -88,6 +98,7 @@ const Page = () => {
             placeholder="Enter Phone"
             value={formik.values.phone}
             onChange={formik.handleChange}
+            optional={true}
           />
           <div>
             <label className="mb-1 block text-sm font-medium text-gray-700">

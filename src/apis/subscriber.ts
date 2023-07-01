@@ -11,10 +11,9 @@ export const createSubscribers = async (subscriber: any) => {
   try {
     const response = await api.post('/api/subscriber', subscriber);
     const data = await response.data;
-    toast.success('Subscriber Added Successfully');
     return data;
   } catch (error: any) {
-    toast.error(error.response.data.message);
+    throw error;
   }
 };
 

@@ -88,6 +88,7 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
       mutate();
     }
 
+    // If user is not logged in and auth token cookie does not exist, redirect to login page
     if (!cookies.auth_token) {
       router.push('/login');
     }

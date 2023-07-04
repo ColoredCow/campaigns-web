@@ -8,4 +8,19 @@
   html {
     font-family: 'Nunito', system-ui, sans-serif;
   }
+
+  .theme-default {
+    --color-primary-900: 93, 65, 158; /*#5D419E */
+    --color-primary-700: 133, 81, 255; /*#8551FF*/
+  }
+  .theme-agriculture {
+    --color-primary-900: 17, 135, 64; /* #118740 */
+    --color-primary-700: 133, 81, 255; /*#8551FF*/
+    --color-primary-500: 17, 135, 64; /* #118740 */
+  }
+  .theme-teal {
+    --color-primary-900: 0, 128, 128; /*#008080*/
+    --color-primary-700: 133, 81, 255; /*#8551FF*/
+    --color-primary-500: 0, 128, 128; /*#008080*/
+  }
 }

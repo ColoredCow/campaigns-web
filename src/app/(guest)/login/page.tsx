@@ -1,30 +1,43 @@
 'use client';
 
+import React, { useEffect } from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { useAuth } from '@/hooks/auth';
-import { useEffect, useState } from 'react';
 
 const Page = () => {
-  const [errors, setErrors] = useState([]);
-
   const { login, isLoading, user } = useAuth({ middleware: 'guest' });
 
   useEffect(() => {
     console.log('user....', user);
-    console.log('errors....', errors);
-  }, [user, errors]);
+  }, [user]);
 
-  const submitForm = async () => {
+  const submitForm = async (values: any) => {
+    const { email, password } = values;
     login({
-      email: 'ayush.uniyal@coloredcow.in',
-      password: 'Ayush',
-      setErrors,
+      email: email,
+      password: password,
     });
   };
 
+  const validationSchema = yup.object().shape({
+    email: yup.string().required('Email is required'),
+    password: yup.string().required('Password is required'),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: submitForm,
+    validationSchema: validationSchema,
+  });
+
   if (isLoading || user) {
-    return <></>;
+    return null;
   }
 
   return (
@@ -40,19 +53,34 @@ const Page = () => {
       </div>
       <div className="flex flex-1 flex-col justify-center bg-slate-100 px-20">
         <h3 className="mb-6 text-2xl">Sign in</h3>
-        <Input
-          name="email"
-          type="email"
-          label="Email"
-          placeholder="Enter your email"
-        />
-        <Input
-          name="password"
-          type="password"
-          label="Password"
-          placeholder="Enter your password"
-        />
-        <Button onClick={submitForm}>Sign in</Button>
+        <form onSubmit={formik.handleSubmit}>
+          <Input
+            name="email"
+            type="email"
+            label="Email"
+            placeholder="Enter your email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            mandatoryField={!!formik.errors.email}
+            errorMessage={formik.errors.email}
+          />
+          <Input
+            name="password"
+            type="password"
+            label="Password"
+            placeholder="Enter your password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            mandatoryField={!!formik.errors.password}
+            errorMessage={formik.errors.password}
+          />
+          <Button
+            className="btn rounded-3 font-golas-600 fs-16 w-203 btn-curious-blue py-2 text-center text-white"
+            type="submit"
+          >
+            Sign in
+          </Button>
+        </form>
       </div>
     </div>
   );

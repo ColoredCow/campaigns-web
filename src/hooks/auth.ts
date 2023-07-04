@@ -2,9 +2,9 @@ import api from '@/utils/api';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
+import { toast } from 'react-toastify';
 
 type loginProps = {
-  setErrors: any;
   email: string;
   password: string;
 };
@@ -41,24 +41,19 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
   const csrf = () => api.get('/sanctum/csrf-cookie');
 
   // login
-  const login = async ({ setErrors, ...props }: loginProps) => {
-    setErrors([]);
-
+  const login = async ({ ...props }: loginProps) => {
     await csrf();
 
-    await api
-      .post('/api/login', props)
-      .then(async (resp) => {
-        {
-          console.log(resp.data, '--> resp.data');
-        }
+    try {
+      await api.post('/api/login', props).then(async (resp) => {
         setAuthToken(resp.data);
         await mutate();
         router.push('/campaign');
-      })
-      .catch((error) => {
-        // Handle error
+        toast.success('Login successful');
       });
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
   };
 
   // logout

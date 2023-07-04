@@ -29,7 +29,7 @@ const Page = () => {
 
   return (
     <div className="flex min-h-screen">
-      <div className="flex flex-1 flex-col justify-center bg-gray-800 px-20 text-white">
+      <div className="flex flex-1 flex-col justify-center bg-primary-900 px-20 text-white">
         <h2 className="mb-6 text-5xl">Campaigns</h2>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil

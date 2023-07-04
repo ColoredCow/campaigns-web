@@ -20,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={nunito.className}>{children}</body>
+      <body className={`theme-agriculture ${nunito.className}`}>
+        {children}
+      </body>
     </html>
   );
 }

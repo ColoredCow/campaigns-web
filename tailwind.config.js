@@ -1,6 +1,15 @@
 import defaultTheme from 'tailwindcss';
 console.log('defaultTheme...', defaultTheme);
-// const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme');
+
+const withOpacity = (variableName) => {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variableName}), ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+};
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -19,7 +28,20 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        'primary-900': withOpacity('--color-primary-900'),
+        'primary-700': withOpacity('--color-primary-700'),
+        'primary-500': withOpacity('--color-primary-500'),
+        'primary-400': withOpacity('--color-primary-400'),
+      },
+      borderColor: {
+        'primary-900': withOpacity('--color-primary-900'),
+        'primary-700': withOpacity('--color-primary-700'),
+        'primary-500': withOpacity('--color-primary-500'),
+        'primary-400': withOpacity('--color-primary-400'),
+      },
     },
   },
+
   plugins: [],
 };

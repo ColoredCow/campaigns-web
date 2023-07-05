@@ -2,26 +2,28 @@
 
 import Button from '@/components/Button';
 import Input from '@/components/Input';
+import MultiSelect from '@/components/MultiSelect';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
-import { createSubscribers, getTagList } from '@/apis/subscriber';
+import { createSubscriber, getTags } from '@/apis/subscriber';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
-import Select from 'react-select';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { subscriberSchema } from '@/validations/subscriber';
 
 const Page = () => {
   const router = useRouter();
   const [tags, setTags] = useState([]);
-  const [selectedOptions, setSelectedOptions] = useState();
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const onSubmit = async (values: any) => {
-    values.tags = selectedOptions.map(
-      (selectedOption: { value: any }) => selectedOption.value
-    );
+    if (selectedOptions.length > 0) {
+      values.tags = selectedOptions.map(
+        (selectedOption: { value: any }) => selectedOption.value
+      );
+    }
     try {
-      await createSubscribers(values);
+      await createSubscriber(values);
       toast.success('Subscriber created successfully');
       router.back();
     } catch (error: any) {
@@ -31,13 +33,15 @@ const Page = () => {
 
   useEffect(() => {
     const fetchTagLists = async () => {
-      setTags(await getTagList());
+      setTags(await getTags());
     };
     fetchTagLists();
   }, []);
 
-  function handleSelect(data: any) {
-    setSelectedOptions(data);
+  function handleTagSelection(data: any) {
+    if (data.length > 0) {
+      setSelectedOptions(data);
+    }
   }
 
   const tagsList =
@@ -55,10 +59,7 @@ const Page = () => {
       phone: '',
     },
     onSubmit: onSubmit,
-    validationSchema: yup.object({
-      name: yup.string().trim().required('Name is required'),
-      email: yup.string().required('Email is required'),
-    }),
+    validationSchema: subscriberSchema,
   });
 
   return (
@@ -78,8 +79,7 @@ const Page = () => {
             placeholder="Enter Email"
             value={formik.values.email}
             onChange={formik.handleChange}
-            mandatoryField={!!formik.errors.email}
-            errorMessage={formik.errors.email}
+            required={formik.errors.email}
           />
           <Input
             type="text"
@@ -88,8 +88,7 @@ const Page = () => {
             placeholder="Enter Name"
             value={formik.values.name}
             onChange={formik.handleChange}
-            mandatoryField={!!formik.errors.name}
-            errorMessage={formik.errors.name}
+            required={formik.errors.name}
           />
           <Input
             type="tel"
@@ -101,25 +100,17 @@ const Page = () => {
             optional={true}
           />
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700">
-              Select List
-            </label>
-            <Select
+            <MultiSelect
               options={tagsList}
               placeholder="Select Tags"
               value={selectedOptions}
-              onChange={handleSelect}
+              onChange={handleTagSelection}
               isSearchable={true}
-              isMulti
+              label="Select List"
             />
           </div>
         </div>
-        <Button
-          className="btn rounded-3 font-golas-600 fs-16 w-203 btn-curious-blue py-2 text-center text-white"
-          type="submit"
-        >
-          Create
-        </Button>
+        <Button type="submit">Create</Button>
       </form>
     </>
   );

@@ -1,15 +1,13 @@
 'use client';
 
-import Button from '@/components/Button';
-import Input from '@/components/Input';
-import MultiSelect from '@/components/MultiSelect';
+import Subscriber from '@/components/Forms/Subscriber';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { createSubscriber, getTags } from '@/apis/subscriber';
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { subscriberSchema } from '@/validations/subscriber';
+import { subscriberValidationSchema } from '@/validations/subscriber';
 
 const Page = () => {
   const router = useRouter();
@@ -59,7 +57,7 @@ const Page = () => {
       phone: '',
     },
     onSubmit: onSubmit,
-    validationSchema: subscriberSchema,
+    validationSchema: subscriberValidationSchema,
   });
 
   return (
@@ -70,48 +68,13 @@ const Page = () => {
           <span className="ml-1 text-3xl">New Subscriber</span>
         </h2>
       </div>
-      <form onSubmit={formik.handleSubmit}>
-        <div className="grid grid-cols-2 gap-2">
-          <Input
-            type="email"
-            name="email"
-            label="Email"
-            placeholder="Enter Email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            required={formik.errors.email}
-          />
-          <Input
-            type="text"
-            name="name"
-            label="Name"
-            placeholder="Enter Name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            required={formik.errors.name}
-          />
-          <Input
-            type="tel"
-            name="phone"
-            label="Phone"
-            placeholder="Enter Phone"
-            value={formik.values.phone}
-            onChange={formik.handleChange}
-            optional={true}
-          />
-          <div>
-            <MultiSelect
-              options={tagsList}
-              placeholder="Select Tags"
-              value={selectedOptions}
-              onChange={handleTagSelection}
-              isSearchable={true}
-              label="Select List"
-            />
-          </div>
-        </div>
-        <Button type="submit">Create</Button>
-      </form>
+      <Subscriber
+        formik={formik}
+        MultiSelectedOptions={selectedOptions}
+        tagsList={tagsList}
+        handleTagSelection={handleTagSelection}
+        btnName="Create"
+      />
     </>
   );
 };

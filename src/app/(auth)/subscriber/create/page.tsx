@@ -39,6 +39,8 @@ const Page = () => {
   function handleTagSelection(data: any) {
     if (data.length > 0) {
       setSelectedOptions(data);
+    } else {
+      setSelectedOptions([]);
     }
   }
 

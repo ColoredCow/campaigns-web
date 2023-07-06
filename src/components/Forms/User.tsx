@@ -1,5 +1,4 @@
 import Input from '@/components/Input';
-import MultiSelect from '@/components/MultiSelect';
 import Button from '@/components/Button';
 
 const User = ({ formik, btnName }: { formik: any; btnName: string }) => {

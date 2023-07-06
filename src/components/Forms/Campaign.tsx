@@ -23,7 +23,7 @@ const Subscriber = ({
             onChange={formik.handleChange}
             name="sender_identity_id"
             label="Sender Identity"
-            required={formik.errors.email_subject}
+            required={formik.errors.sender_identity_id}
           />
           <Select
             options={tagsOptions}
@@ -31,7 +31,7 @@ const Subscriber = ({
             onChange={formik.handleChange}
             name="subscription_list_id"
             label="Select List"
-            required={formik.errors.email_subject}
+            required={formik.errors.subscription_list_id}
           />
         </div>
         <Input

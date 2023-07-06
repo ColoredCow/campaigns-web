@@ -30,6 +30,7 @@ export interface Subscribers {
   address: string;
   organization: string;
   result: string;
+  subscriber: Subscribers;
 }
 
 export interface SenderIdentity {

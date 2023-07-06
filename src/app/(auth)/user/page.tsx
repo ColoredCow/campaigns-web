@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { UsersIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-// import Input from '@/components/Input';
 
 const Page = () => {
   const [users, setUsers] = useState<Users | undefined>(undefined);

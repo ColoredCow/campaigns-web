@@ -61,8 +61,7 @@ const Page = () => {
             placeholder="Enter your email"
             value={formik.values.email}
             onChange={formik.handleChange}
-            mandatoryField={!!formik.errors.email}
-            errorMessage={formik.errors.email}
+            required={formik.errors.email}
           />
           <Input
             name="password"
@@ -71,15 +70,9 @@ const Page = () => {
             placeholder="Enter your password"
             value={formik.values.password}
             onChange={formik.handleChange}
-            mandatoryField={!!formik.errors.password}
-            errorMessage={formik.errors.password}
+            required={formik.errors.password}
           />
-          <Button
-            className="btn rounded-3 font-golas-600 fs-16 w-203 btn-curious-blue py-2 text-center text-white"
-            type="submit"
-          >
-            Sign in
-          </Button>
+          <Button type="submit">Sign in</Button>
         </form>
       </div>
     </div>

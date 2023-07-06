@@ -49,6 +49,8 @@ export interface Users {
 }
 
 export interface Tag {
+  data: any;
+  total: ReactNode;
   name: string;
 }
 

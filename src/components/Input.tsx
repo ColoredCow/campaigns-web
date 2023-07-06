@@ -8,8 +8,7 @@ const Input = ({
   className,
   value,
   onChange,
-  mandatoryField,
-  errorMessage,
+  required,
   optional = false,
 }: {
   type: string;
@@ -21,8 +20,7 @@ const Input = ({
   className?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  mandatoryField?: boolean;
-  errorMessage?: string;
+  required?: string;
   optional?: boolean;
 }) => {
   return (
@@ -39,15 +37,15 @@ const Input = ({
         name={name}
         id={name}
         className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 autofill:bg-gray-50 focus:border-blue-500 focus:ring-blue-500 ${
-          mandatoryField && 'border-1 border-rose-600 bg-red-50'
+          required && 'border-1 border-rose-600 bg-red-50'
         }`}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
-      {mandatoryField && (
+      {required && (
         <div className="text-sm font-semibold italic text-red-500">
-          {errorMessage}
+          {required}
         </div>
       )}
       {helpText && (

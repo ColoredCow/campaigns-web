@@ -8,6 +8,7 @@ import { AtSymbolIcon } from '@heroicons/react/24/outline';
 import { SenderIdentity, TableData } from '@/utils/types';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 const Page = () => {
   const [senderIdentities, setSenderIdentities] = useState<
@@ -75,9 +76,12 @@ const Page = () => {
           )}
         </h2>
         <div>
-          <Button onClick={() => console.log('new campaign')}>
+          <Link
+            className="flex rounded-lg bg-indigo-700 px-4 py-2 text-white hover:bg-indigo-800"
+            href="/sender-identity/create"
+          >
             Create Sender Identity
-          </Button>
+          </Link>
         </div>
       </div>
       <Table data={tableData} />

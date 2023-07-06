@@ -1,5 +1,5 @@
 import api from '@/utils/api';
-import { toast } from 'react-toastify';
+import { Subscribers } from '@/utils/types';
 
 export const getSubscribers = async () => {
   const response = await api.get('/api/subscriber');
@@ -7,7 +7,7 @@ export const getSubscribers = async () => {
   return data;
 };
 
-export const createSubscribers = async (subscriber: any) => {
+export const createSubscriber = async (subscriber: Subscribers) => {
   try {
     const response = await api.post('/api/subscriber', subscriber);
     const data = await response.data;
@@ -17,7 +17,7 @@ export const createSubscribers = async (subscriber: any) => {
   }
 };
 
-export const getTagList = async () => {
+export const getTags = async () => {
   const response = await api.get('/api/tag');
   const data = await response.data;
   return data;

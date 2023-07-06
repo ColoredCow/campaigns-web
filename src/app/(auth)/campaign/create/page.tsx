@@ -1,21 +1,19 @@
 'use client';
 
-import Button from '@/components/Button';
 import {
   AtSymbolIcon,
   InformationCircleIcon,
 } from '@heroicons/react/24/outline';
-import Input from '@/components/Input';
 import { useFormik } from 'formik';
 import { createCampaign } from '@/apis/campaign';
 import { getSenderIdentities } from '@/apis/SenderIdentity';
 import { getTags } from '@/apis/tag';
-import * as yup from 'yup';
 import { Tooltip, Grid } from '@nextui-org/react';
-import Select from '@/components/Select';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import Campaign from '@/components/Forms/Campaign';
+import { campaignValidation } from '@/validations/campaign';
 
 const Page = () => {
   const router = useRouter();
@@ -50,11 +48,7 @@ const Page = () => {
       email_body: 'Email Body', // We need ot add this field in the form when we are implementing the wisywig editor
     },
     onSubmit: onSubmit,
-    validationSchema: yup.object({
-      sender_identity_id: yup.string().required('Sender Identity is required'),
-      subscription_list_id: yup.string().required('Subscription is required'),
-      email_subject: yup.string().required('Email Subject is required'),
-    }),
+    validationSchema: campaignValidation,
   });
 
   return (
@@ -86,44 +80,12 @@ const Page = () => {
           </Grid>
         </h2>
       </div>
-      <form onSubmit={formik.handleSubmit}>
-        <div className="grid grid-cols-2 gap-2">
-          <Select
-            options={senderIdentity.data || []}
-            value={formik.values.sender_identity_id}
-            onChange={formik.handleChange}
-            name="sender_identity_id"
-            label="Sender Identity"
-            mandatoryField={!!formik.errors.email_subject}
-            errorMessage={formik.errors.email_subject}
-          />
-          <Select
-            options={tags.data || []}
-            value={formik.values.subscription_list_id}
-            onChange={formik.handleChange}
-            name="subscription_list_id"
-            label="Select List"
-            mandatoryField={!!formik.errors.email_subject}
-            errorMessage={formik.errors.email_subject}
-          />
-        </div>
-        <Input
-          type="text"
-          name="email_subject"
-          label="Subject"
-          placeholder="Enter Subject"
-          value={formik.values.email_subject}
-          onChange={formik.handleChange}
-          mandatoryField={!!formik.errors.email_subject}
-          errorMessage={formik.errors.email_subject}
-        />
-        <Button
-          className="btn rounded-3 font-golas-600 fs-16 w-203 btn-curious-blue py-2 text-center text-white"
-          type="submit"
-        >
-          Create Campaign
-        </Button>
-      </form>
+      <Campaign
+        formik={formik}
+        senderidentityOptions={senderIdentity.data || []}
+        tagsOptions={tags.data || []}
+        btnName="Create Campaign"
+      />
     </div>
   );
 };

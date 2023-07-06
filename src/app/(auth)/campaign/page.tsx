@@ -8,7 +8,6 @@ import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-// import Input from '@/components/Input';
 
 const Page = () => {
   const [campaigns, setCampaigns] = useState<CampaignResource | undefined>(

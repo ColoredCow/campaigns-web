@@ -1,8 +1,6 @@
 'use client';
 
-import Button from '@/components/Button';
 import { AtSymbolIcon } from '@heroicons/react/24/outline';
-import Input from '@/components/Input';
 import { useFormik } from 'formik';
 import { createSenderIndentity } from '@/apis/SenderIdentity';
 import { toast } from 'react-toastify';

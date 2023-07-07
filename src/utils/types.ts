@@ -19,6 +19,15 @@ export interface Campaign {
 }
 
 export interface Subscribers {
+  id:
+    | string
+    | number
+    | boolean
+    | readonly string[]
+    | readonly number[]
+    | readonly boolean[]
+    | null
+    | undefined;
   data: any;
   total: ReactNode;
   email: string;

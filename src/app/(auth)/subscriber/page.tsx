@@ -46,9 +46,12 @@ const Page = () => {
           </>,
           <>
             <div className="flex justify-end">
-              <a href="#" className="text-gray-400 hover:text-indigo-700">
+              <Link
+                href={`/subscriber/edit/${subscriber.id}`}
+                className="text-gray-400 hover:text-indigo-700"
+              >
                 <PencilSquareIcon className="h-5 w-5" />
-              </a>
+              </Link>
               <a href="#" className="ml-2 text-gray-400 hover:text-red-600">
                 <TrashIcon className="h-5 w-5" />
               </a>

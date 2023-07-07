@@ -5,7 +5,6 @@ const Input = ({
   placeholder,
   helpText,
   disabled,
-  className,
   value,
   onChange,
   required,
@@ -24,7 +23,7 @@ const Input = ({
   optional?: boolean;
 }) => {
   return (
-    <div className={`mb-4 flex flex-col ${className}`}>
+    <div className={`mb-4 flex flex-col`}>
       <label
         htmlFor={name}
         className="mb-1 block text-sm font-medium text-gray-700"

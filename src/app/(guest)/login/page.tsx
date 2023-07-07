@@ -10,16 +10,9 @@ import { useAuth } from '@/hooks/auth';
 const Page = () => {
   const { login, isLoading, user } = useAuth({ middleware: 'guest' });
 
-  useEffect(() => {
-    console.log('user....', user);
-  }, [user]);
-
   const submitForm = async (values: any) => {
     const { email, password } = values;
-    login({
-      email: email,
-      password: password,
-    });
+    login({ email, password });
   };
 
   const validationSchema = yup.object().shape({

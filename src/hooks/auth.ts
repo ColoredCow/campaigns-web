@@ -51,8 +51,7 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
       .post('/api/login', props)
       .then(async (resp) => {
         setAuthToken(resp.data);
-        // Set authentication token as a cookie
-        setCookie(null, 'auth_token', resp.data, {
+        setCookie(null, 'authToken', resp.data, {
           maxAge: 30 * 24 * 60 * 60,
           path: '/',
         });
@@ -68,7 +67,7 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
   const logout = async () => {
     await api.post('/api/logout');
     mutate(null);
-    destroyCookie(null, 'auth_token'); // Remove the auth token cookie
+    destroyCookie(null, 'authToken');
     router.push('/login');
   };
 
@@ -83,13 +82,13 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
     if (middleware == 'auth' && error) router.push('/login');
 
     // Check if auth token cookie exists
-    if (!user && !error && cookies.auth_token) {
-      setAuthToken(cookies.auth_token);
+    if (!user && !error && cookies.authToken) {
+      setAuthToken(cookies.authToken);
       mutate();
     }
 
     // If user is not logged in and auth token cookie does not exist, redirect to login page
-    if (!cookies.auth_token) {
+    if (!cookies.authToken) {
       router.push('/login');
     }
   }, [user, error, middleware, router]);

@@ -17,9 +17,34 @@ export const createSubscriber = async (subscriber: Subscribers) => {
   }
 };
 
-export const updateSubscriber = async (subscriberId: any) => {
+export const updateSubscriber = async (
+  subscriberId: any,
+  subscriber: Subscribers
+) => {
   try {
-    const response = await api.put(`/api/subscriber/${subscriberId}`);
+    const response = await api.put(
+      `/api/subscriber/${subscriberId}`,
+      subscriber
+    );
+    const data = await response.data;
+    return data;
+  } catch (error: any) {
+    throw error;
+  }
+};
+
+export const getSubscriber = async (subscriberId: any) => {
+  try {
+    const response = await api.get(`/api/subscriber/${subscriberId}`);
+    return response;
+  } catch (error: any) {
+    throw error;
+  }
+};
+
+export const deleteSubscriber = async (subscriberId: any) => {
+  try {
+    const response = await api.delete(`/api/subscriber/${subscriberId}`);
     const data = await response.data;
     return data;
   } catch (error: any) {

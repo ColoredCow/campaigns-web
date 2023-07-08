@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/components/Button';
-import { getSubscribers } from '@/apis/subscriber';
+import { getSubscribers, deleteSubscriber } from '@/apis/subscriber';
 import Input from '@/components/Input';
 import Table from '@/components/Table';
 import { useEffect, useState } from 'react';
@@ -9,6 +9,7 @@ import { Subscribers, TableData } from '@/utils/types';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 const Page = () => {
   const [subscribers, setSubscribers] = useState<Subscribers | undefined>(
@@ -26,6 +27,17 @@ const Page = () => {
     headers: ['Details', 'List'],
     rows: [],
   });
+
+  const showPopupModel = async (id: Subscribers) => {
+    const result = confirm('Are you sure you want to delete this subscriber?');
+    if (result) {
+      try {
+        await deleteSubscriber(id);
+      } catch (error: any) {
+        toast.error(error.response.data.message);
+      }
+    }
+  };
 
   useEffect(() => {
     if (subscribers) {
@@ -47,12 +59,20 @@ const Page = () => {
           <>
             <div className="flex justify-end">
               <Link
-                href={`/subscriber/edit/${subscriber.id}`}
+                // href={`/subscriber/edit/${subscriber.id}`}
+                href={{
+                  pathname: '/subscriber/edit/',
+                  query: { id: subscriber.id },
+                }}
                 className="text-gray-400 hover:text-indigo-700"
               >
                 <PencilSquareIcon className="h-5 w-5" />
               </Link>
-              <a href="#" className="ml-2 text-gray-400 hover:text-red-600">
+              <a
+                type="button"
+                onClick={() => showPopupModel(subscriber.id)}
+                className="text-gray-400 hover:text-indigo-700"
+              >
                 <TrashIcon className="h-5 w-5" />
               </a>
             </div>

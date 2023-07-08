@@ -19,15 +19,7 @@ export interface Campaign {
 }
 
 export interface Subscribers {
-  id:
-    | string
-    | number
-    | boolean
-    | readonly string[]
-    | readonly number[]
-    | readonly boolean[]
-    | null
-    | undefined;
+  id: number;
   data: any;
   total: ReactNode;
   email: string;
@@ -39,7 +31,7 @@ export interface Subscribers {
   address: string;
   organization: string;
   result: string;
-  subscriber: Subscribers;
+  subscriber: any;
 }
 
 export interface SenderIdentity {

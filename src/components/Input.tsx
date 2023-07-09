@@ -27,7 +27,6 @@ const Input = ({
         className="mb-1 block text-sm font-medium text-gray-700"
       >
         {label}
-        {!required && <span className="text-gray-400"> (Optional)</span>}
       </label>
       <input
         type={type}

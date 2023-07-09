@@ -86,8 +86,10 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
     if (middleware == 'guest' && user) router.push('/campaign');
     if (middleware == 'auth' && error) router.push('/login');
 
-    setAuthToken(cookies.authToken);
-    mutate();
+    if (!user && !error && cookies.authToken) {
+      setAuthToken(cookies.authToken);
+      mutate();
+    }
   }, [user, error, middleware, router]);
 
   return {

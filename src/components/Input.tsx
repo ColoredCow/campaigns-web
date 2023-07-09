@@ -9,7 +9,6 @@ const Input = ({
   value,
   onChange,
   required,
-  optional = false,
 }: {
   type: string;
   name: string;
@@ -30,7 +29,6 @@ const Input = ({
         className="mb-1 block text-sm font-medium text-gray-700"
       >
         {label}
-        {optional && <span className="text-gray-400"> (Optional)</span>}
       </label>
       <input
         type={type}

@@ -111,7 +111,7 @@ const Subscriber = ({
             />
           </div>
         </div>
-        <Button type="submit">Create</Button>
+        <Button type="submit">{subscriber ? 'Update' : 'Create'}</Button>
       </form>
     </>
   );

@@ -6,7 +6,6 @@ import { updateSubscriber, getSubscriber } from '@/apis/subscriber';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { GetServerSideProps } from 'next';
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -40,7 +39,7 @@ const Page = () => {
     }
     try {
       await updateSubscriber(id, values);
-      toast.success('Subscriber created successfully');
+      toast.success('Subscriber updated successfully');
       router.back();
     } catch (error: any) {
       toast.error(error.response.data.message);

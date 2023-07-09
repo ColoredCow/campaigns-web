@@ -74,6 +74,11 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
   useEffect(() => {
     const cookies = parseCookies();
 
+    // If user is not logged in and auth token cookie does not exist, redirect to login page
+    if (!cookies.authToken) {
+      router.push('/login');
+    }
+
     if (user || error) {
       setIsLoading(false);
     }
@@ -81,16 +86,8 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
     if (middleware == 'guest' && user) router.push('/campaign');
     if (middleware == 'auth' && error) router.push('/login');
 
-    // Check if auth token cookie exists
-    if (!user && !error && cookies.authToken) {
-      setAuthToken(cookies.authToken);
-      mutate();
-    }
-
-    // If user is not logged in and auth token cookie does not exist, redirect to login page
-    if (!cookies.authToken) {
-      router.push('/login');
-    }
+    setAuthToken(cookies.authToken);
+    mutate();
   }, [user, error, middleware, router]);
 
   return {

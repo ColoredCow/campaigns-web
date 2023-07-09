@@ -49,7 +49,6 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
         setAuthToken(resp.data);
         await mutate();
         router.push('/campaign');
-        toast.success('Login successful');
       });
     } catch (error: any) {
       toast.error(error.response.data.message);

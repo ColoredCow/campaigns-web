@@ -8,7 +8,6 @@ const Input = ({
   value,
   onChange,
   required,
-  optional = false,
 }: {
   type: string;
   name: string;
@@ -20,7 +19,6 @@ const Input = ({
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: string;
-  optional?: boolean;
 }) => {
   return (
     <div className={`mb-4 flex flex-col`}>
@@ -29,7 +27,7 @@ const Input = ({
         className="mb-1 block text-sm font-medium text-gray-700"
       >
         {label}
-        {optional && <span className="text-gray-400"> (Optional)</span>}
+        {!required && <span className="text-gray-400"> (Optional)</span>}
       </label>
       <input
         type={type}

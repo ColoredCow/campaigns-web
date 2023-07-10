@@ -16,10 +16,11 @@ const Page = () => {
     undefined
   );
 
+  const fetchSubscribers = async () => {
+    setSubscribers(await getSubscribers());
+  };
+
   useEffect(() => {
-    const fetchSubscribers = async () => {
-      setSubscribers(await getSubscribers());
-    };
     fetchSubscribers();
   }, []);
 
@@ -33,6 +34,8 @@ const Page = () => {
     if (result) {
       try {
         await deleteSubscriber(id);
+        toast.success('Subscriber deleted successfully');
+        fetchSubscribers();
       } catch (error: any) {
         toast.error(error.response.data.message);
       }

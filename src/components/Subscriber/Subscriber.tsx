@@ -19,10 +19,10 @@ const Subscriber = ({
 }) => {
   const [tags, setTags] = useState([]);
 
-  let initialValues = {
-    email: subscriber?.email ? subscriber.email : '',
-    name: subscriber?.name ? subscriber.name : '',
-    phone: subscriber?.phone ? subscriber.phone : '',
+  const initialValues = {
+    email: '',
+    name: '',
+    phone: '',
   };
 
   useEffect(() => {
@@ -44,13 +44,12 @@ const Subscriber = ({
 
     fetchTagLists();
     fetchInitialValues();
-  }, []);
+  }, [subscriber]);
 
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: onSubmit,
     validationSchema: subscriberValidationSchema,
-    enableReinitialize: true,
   });
 
   const tagsList =

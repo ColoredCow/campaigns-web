@@ -29,20 +29,21 @@ const Page = () => {
     rows: [],
   });
 
-  const showPopupModel = async (id: Subscribers) => {
-    const result = confirm('Are you sure you want to delete this subscriber?');
-    if (result) {
-      try {
-        await deleteSubscriber(id);
-        toast.success('Subscriber deleted successfully');
-        fetchSubscribers();
-      } catch (error: any) {
-        toast.error(error.response.data.message);
-      }
-    }
-  };
-
   useEffect(() => {
+    const showPopupModel = async (id: number) => {
+      const result = confirm(
+        'Are you sure you want to delete this subscriber?'
+      );
+      if (result) {
+        try {
+          await deleteSubscriber(id);
+          toast.success('Subscriber deleted successfully');
+          fetchSubscribers();
+        } catch (error: any) {
+          toast.error(error.response.data.message);
+        }
+      }
+    };
     if (subscribers) {
       const rows = subscribers.data.map((subscriber: Subscribers) => {
         return [
@@ -56,13 +57,11 @@ const Page = () => {
             <div className="text-gray-500">{subscriber.address}</div>
           </>,
           <>
-            {console.log(subscriber, '-->subscriber')}
             <div className="text-gray-500">{/* {subscriber.comments} */}</div>
           </>,
           <>
             <div className="flex justify-end">
               <Link
-                // href={`/subscriber/edit/${subscriber.id}`}
                 href={{
                   pathname: '/subscriber/edit/',
                   query: { id: subscriber.id },

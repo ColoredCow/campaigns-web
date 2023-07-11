@@ -12,13 +12,13 @@ export const createSubscriber = async (subscriber: Subscribers) => {
     const response = await api.post('/api/subscriber', subscriber);
     const data = await response.data;
     return data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     throw error;
   }
 };
 
 export const updateSubscriber = async (
-  subscriberId: any,
+  subscriberId: string | null,
   subscriber: Subscribers
 ) => {
   try {
@@ -28,26 +28,26 @@ export const updateSubscriber = async (
     );
     const data = await response.data;
     return data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     throw error;
   }
 };
 
-export const getSubscriber = async (subscriberId: any) => {
+export const getSubscriber = async (subscriberId: string | null) => {
   try {
     const response = await api.get(`/api/subscriber/${subscriberId}`);
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     throw error;
   }
 };
 
-export const deleteSubscriber = async (subscriberId: any) => {
+export const deleteSubscriber = async (subscriberId: number) => {
   try {
     const response = await api.delete(`/api/subscriber/${subscriberId}`);
     const data = await response.data;
     return data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     throw error;
   }
 };

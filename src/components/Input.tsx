@@ -4,7 +4,6 @@ const Input = ({
   label,
   placeholder,
   helpText,
-  disabled,
   className,
   value,
   onChange,
@@ -35,7 +34,7 @@ const Input = ({
         name={name}
         id={name}
         className={`block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 autofill:bg-gray-50 focus:border-blue-500 focus:ring-blue-500 ${
-          required && 'border-1 border-rose-600 bg-red-50'
+          required && 'border-rose-600 bg-red-50'
         }`}
         placeholder={placeholder}
         value={value}

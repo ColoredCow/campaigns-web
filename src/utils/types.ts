@@ -36,13 +36,13 @@ export interface Subscribers {
 
 export interface SenderIdentity {
   total: ReactNode;
-  data: any;
+  data: unknown;
   name: string;
   email: string;
 }
 
 export interface Users {
-  data: any;
+  data: unknown;
   total: ReactNode;
   map(arg0: (user: Users) => import('react').JSX.Element[]): unknown;
   name: string;

@@ -19,8 +19,8 @@ const Page = () => {
       try {
         const { data } = await getSubscriber(id);
         setSelectedOptions(
-          data.tags.map((tag: { name: any; _id: any }) => {
-            return { value: tag._id, label: tag.name };
+          data.tags.map((tag: { name: string; id: number }) => {
+            return { value: tag.id, label: tag.name };
           })
         );
         setSubscriber(data);

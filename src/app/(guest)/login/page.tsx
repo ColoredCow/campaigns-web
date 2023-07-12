@@ -50,25 +50,23 @@ const Page = () => {
           validationSchema={validationSchema}
         >
           {
-            <>
-              <Form>
+            <Form>
+              <Input
+                name="email"
+                type="email"
+                label="Email"
+                placeholder="Enter your email"
+              />
+              <div className="my-2.5">
                 <Input
-                  name="email"
-                  type="email"
-                  label="Email"
-                  placeholder="Enter your email"
+                  name="password"
+                  type="password"
+                  label="Password"
+                  placeholder="Enter your password"
                 />
-                <div className="my-2.5">
-                  <Input
-                    name="password"
-                    type="password"
-                    label="Password"
-                    placeholder="Enter your password"
-                  />
-                </div>
-                <Button type="submit">Sign in</Button>
-              </Form>
-            </>
+              </div>
+              <Button type="submit">Sign in</Button>
+            </Form>
           }
         </Formik>
       </div>

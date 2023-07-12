@@ -15,7 +15,7 @@ const Input = ({
   helpText?: string;
 }) => {
   return (
-    <div className={`mb-4 flex flex-col`}>
+    <div className="mb-4 flex flex-col">
       <Field
         name={name}
         type={type}

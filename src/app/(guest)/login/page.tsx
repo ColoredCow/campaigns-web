@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import { useFormik } from 'formik';
+import React from 'react';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { useAuth } from '@/hooks/auth';
 
 const Page = () => {
-  const { login, isLoading, user } = useAuth({ middleware: 'guest' });
+  const { login } = useAuth({ middleware: 'guest' });
 
   const submitForm = async (values: any) => {
     const { email, password } = values;
@@ -26,18 +26,10 @@ const Page = () => {
       .required('Password is required'),
   });
 
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    onSubmit: submitForm,
-    validationSchema: validationSchema,
-  });
-
-  if (isLoading || user) {
-    return null;
-  }
+  const initialValues = {
+    email: '',
+    password: '',
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -52,27 +44,33 @@ const Page = () => {
       </div>
       <div className="flex flex-1 flex-col justify-center bg-slate-100 px-20">
         <h3 className="mb-6 text-2xl">Sign in</h3>
-        <form onSubmit={formik.handleSubmit}>
-          <Input
-            name="email"
-            type="email"
-            label="Email"
-            placeholder="Enter your email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            required={formik.errors.email}
-          />
-          <Input
-            name="password"
-            type="password"
-            label="Password"
-            placeholder="Enter your password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            required={formik.errors.password}
-          />
-          <Button type="submit">Sign in</Button>
-        </form>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={submitForm}
+          validationSchema={validationSchema}
+        >
+          {() => (
+            <>
+              <Form>
+                <Input
+                  name="email"
+                  type="email"
+                  label="Email"
+                  placeholder="Enter your email"
+                />
+                <div className="my-2.5">
+                  <Input
+                    name="password"
+                    type="password"
+                    label="Password"
+                    placeholder="Enter your password"
+                  />
+                </div>
+                <Button type="submit">Sign in</Button>
+              </Form>
+            </>
+          )}
+        </Formik>
       </div>
     </div>
   );

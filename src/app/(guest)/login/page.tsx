@@ -49,7 +49,7 @@ const Page = () => {
           onSubmit={submitForm}
           validationSchema={validationSchema}
         >
-          {() => (
+          {
             <>
               <Form>
                 <Input
@@ -69,7 +69,7 @@ const Page = () => {
                 <Button type="submit">Sign in</Button>
               </Form>
             </>
-          )}
+          }
         </Formik>
       </div>
     </div>

@@ -38,7 +38,6 @@ const Page = () => {
             </div> */}
           </>,
           <>
-            {console.log(tag, '-->campaign')}
             {/* <div>{campaign.sender_identity.name}</div> */}
             <div className="text-gray-500">
               {/* {campaign.sender_identity.email} */}

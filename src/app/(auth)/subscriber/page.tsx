@@ -40,7 +40,6 @@ const Page = () => {
             <div className="text-gray-500">{subscriber.address}</div>
           </>,
           <>
-            {console.log(subscriber, '-->subscriber')}
             <div className="text-gray-500">{/* {subscriber.comments} */}</div>
           </>,
           <>

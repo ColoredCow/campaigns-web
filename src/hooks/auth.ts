@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { toast } from 'react-toastify';
+import { setCookie, parseCookies, destroyCookie } from 'nookies';
 
 type loginProps = {
   email: string;
@@ -28,9 +29,9 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
     data: user,
     error,
     mutate,
-  } = useSWR('/api/user', () =>
+  } = useSWR('/api/profile', () =>
     api
-      .get('/api/user')
+      .get('/api/profile')
       .then((response) => response.data)
       .catch((error) => {
         if (error.response.status !== 409) throw error;
@@ -47,6 +48,10 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
     try {
       await api.post('/api/login', props).then(async (resp) => {
         setAuthToken(resp.data);
+        setCookie(null, 'authToken', resp.data, {
+          maxAge: 30 * 24 * 60 * 60,
+          path: '/',
+        });
         await mutate();
         router.push('/campaign');
       });
@@ -59,16 +64,29 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
   const logout = async () => {
     await api.post('/api/logout');
     mutate(null);
+    destroyCookie(null, 'authToken');
     router.push('/login');
   };
 
   useEffect(() => {
+    const cookies = parseCookies();
+
+    // If user is not logged in and auth token cookie does not exist, redirect to login page
+    if (!cookies.authToken) {
+      router.push('/login');
+    }
+
     if (user || error) {
       setIsLoading(false);
     }
 
     if (middleware == 'guest' && user) router.push('/campaign');
     if (middleware == 'auth' && error) router.push('/login');
+
+    if (!user && !error && cookies.authToken) {
+      setAuthToken(cookies.authToken);
+      mutate();
+    }
   }, [user, error, middleware, router]);
 
   return {

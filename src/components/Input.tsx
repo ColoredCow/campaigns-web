@@ -16,6 +16,12 @@ const Input = ({
 }) => {
   return (
     <div className="mb-4 flex flex-col">
+      <label
+        htmlFor={name}
+        className="mb-1 block text-sm font-medium text-gray-700"
+      >
+        {label}
+      </label>
       <Field
         name={name}
         type={type}

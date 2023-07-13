@@ -1,5 +1,4 @@
 import api from '@/utils/api';
-import { Subscribers } from '@/utils/types';
 
 export const getSubscribers = async () => {
   const response = await api.get('/api/subscriber');
@@ -7,7 +6,7 @@ export const getSubscribers = async () => {
   return data;
 };
 
-export const createSubscriber = async (subscriber: Subscribers) => {
+export const createSubscriber = async (subscriber: any) => {
   try {
     const response = await api.post('/api/subscriber', subscriber);
     const data = await response.data;
@@ -19,7 +18,7 @@ export const createSubscriber = async (subscriber: Subscribers) => {
 
 export const updateSubscriber = async (
   subscriberId: number,
-  subscriber: Subscribers
+  subscriber: any
 ) => {
   try {
     const response = await api.put(

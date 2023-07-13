@@ -17,9 +17,8 @@ export interface Campaign {
   tag: Tag;
 }
 
-export interface Subscribers {
+export interface Subscriber {
   id: number;
-  data: any;
   total: ReactNode;
   email: string;
   name: string;
@@ -30,7 +29,6 @@ export interface Subscribers {
   address: string;
   organization: string;
   result: string;
-  subscriber: any;
 }
 
 export interface SenderIdentity {
@@ -56,6 +54,6 @@ export interface CampaignResource extends ApiResource {
   data: Campaign[];
 }
 
-export interface SubscribersResource extends ApiResource {
-  data: Subscribers[];
+export interface SubscriberResource extends ApiResource {
+  data: Subscriber[];
 }

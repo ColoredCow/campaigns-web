@@ -51,13 +51,15 @@ const Page = () => {
         >
           {
             <Form>
-              <Input
-                name="email"
-                type="email"
-                label="Email"
-                placeholder="Enter your email"
-              />
-              <div className="my-2.5">
+              <div className="mb-2.5">
+                <Input
+                  name="email"
+                  type="email"
+                  label="Email"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div className="mb-2.5">
                 <Input
                   name="password"
                   type="password"

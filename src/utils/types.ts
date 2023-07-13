@@ -48,7 +48,6 @@ export interface Users {
 }
 
 export interface Tag {
-  total: number;
   name: string;
 }
 

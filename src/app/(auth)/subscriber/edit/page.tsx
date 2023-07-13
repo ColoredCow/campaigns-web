@@ -2,14 +2,34 @@
 
 import Subscriber from '@/components/Subscriber/Subscriber';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
-import { createSubscriber } from '@/apis/subscriber';
-import { useState } from 'react';
+import { updateSubscriber, getSubscriber } from '@/apis/subscriber';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Page = () => {
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id');
   const router = useRouter();
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [subscriber, setSubscriber] = useState({});
+
+  useEffect(() => {
+    const fetchSubscriber = async () => {
+      try {
+        const { data } = await getSubscriber(id);
+        setSelectedOptions(
+          data.tags.map((tag: { name: string; id: number }) => {
+            return { value: tag.id, label: tag.name };
+          })
+        );
+        setSubscriber(data);
+      } catch (error: any) {
+        toast.error(error.response.data.message);
+      }
+    };
+    fetchSubscriber();
+  }, []);
 
   const onSubmit = async (values: any) => {
     if (selectedOptions.length > 0) {
@@ -18,8 +38,8 @@ const Page = () => {
       );
     }
     try {
-      await createSubscriber(values);
-      toast.success('Subscriber created successfully');
+      await updateSubscriber(id, values);
+      toast.success('Subscriber updated successfully');
       router.back();
     } catch (error: any) {
       toast.error(error.response.data.message);
@@ -31,13 +51,14 @@ const Page = () => {
       <div className="flex justify-between">
         <h2 className="mb-7 flex items-end">
           <UserGroupIcon className="h-9 w-9" />
-          <span className="ml-1 text-3xl">New Subscriber</span>
+          <span className="ml-1 text-3xl">Edit Subscriber</span>
         </h2>
       </div>
       <Subscriber
         onSubmit={onSubmit}
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
+        subscriber={subscriber}
       />
     </>
   );

@@ -1,5 +1,4 @@
 import api from '@/utils/api';
-import { Subscribers } from '@/utils/types';
 
 export const getSubscribers = async () => {
   const response = await api.get('/api/subscriber');
@@ -7,12 +6,47 @@ export const getSubscribers = async () => {
   return data;
 };
 
-export const createSubscriber = async (subscriber: Subscribers) => {
+export const createSubscriber = async (subscriber: any) => {
   try {
     const response = await api.post('/api/subscriber', subscriber);
     const data = await response.data;
     return data;
-  } catch (error: any) {
+  } catch (error: unknown) {
+    throw error;
+  }
+};
+
+export const updateSubscriber = async (
+  subscriberId: number,
+  subscriber: any
+) => {
+  try {
+    const response = await api.put(
+      `/api/subscriber/${subscriberId}`,
+      subscriber
+    );
+    const data = await response.data;
+    return data;
+  } catch (error: unknown) {
+    throw error;
+  }
+};
+
+export const getSubscriber = async (subscriberId: string | null) => {
+  try {
+    const response = await api.get(`/api/subscriber/${subscriberId}`);
+    return response;
+  } catch (error: unknown) {
+    throw error;
+  }
+};
+
+export const deleteSubscriber = async (subscriberId: number) => {
+  try {
+    const response = await api.delete(`/api/subscriber/${subscriberId}`);
+    const data = await response.data;
+    return data;
+  } catch (error: unknown) {
     throw error;
   }
 };

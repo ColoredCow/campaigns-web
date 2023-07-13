@@ -2,19 +2,18 @@
 
 import Button from '@/components/Button';
 import { getSubscribers, deleteSubscriber } from '@/apis/subscriber';
-import Input from '@/components/Input';
 import Table from '@/components/Table';
 import { useEffect, useState } from 'react';
-import { Subscribers, TableData } from '@/utils/types';
+import { SubscriberResource, TableData } from '@/utils/types';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 
 const Page = () => {
-  const [subscribers, setSubscribers] = useState<Subscribers | undefined>(
-    undefined
-  );
+  const [subscribers, setSubscribers] = useState<
+    SubscriberResource | undefined
+  >(undefined);
 
   const fetchSubscribers = async () => {
     setSubscribers(await getSubscribers());
@@ -45,7 +44,7 @@ const Page = () => {
       }
     };
     if (subscribers) {
-      const rows = subscribers.data.map((subscriber: Subscribers) => {
+      const rows = subscribers.data.map((subscriber) => {
         return [
           <>
             <div>{subscriber.email}</div>

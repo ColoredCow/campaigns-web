@@ -36,9 +36,9 @@ const Subscriber = ({
       : [];
 
   const initialValues = {
-    email: '',
-    name: '',
-    phone: '',
+    email: subscriber?.email ? subscriber.email : '',
+    name: subscriber?.name ? subscriber.name : '',
+    phone: subscriber?.phone ? subscriber.phone : '',
   };
 
   function handleTagSelection(data: any) {
@@ -55,6 +55,7 @@ const Subscriber = ({
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={subscriberValidationSchema}
+        enableReinitialize={true}
       >
         {
           <Form>

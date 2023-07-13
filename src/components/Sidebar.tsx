@@ -53,7 +53,7 @@ const Sidebar = () => {
   return (
     <nav className="sticky top-14 flex w-full flex-col px-2 py-10">
       {routes.map((route, index) => {
-        const isActive = pathname === route.href;
+        const isActive = pathname.startsWith(route.href);
         return (
           <Link
             key={index}

@@ -78,7 +78,7 @@ const Page = () => {
       </div>
       <div className="flex justify-between">
         <div>
-          <Input label="" type="text" placeholder="Search" name="search" />
+          {/* <Input label="" type="text" placeholder="Search" name="search" /> */}
         </div>
         <div>
           <Button onClick={() => console.log('new tag')}>Create Tag</Button>

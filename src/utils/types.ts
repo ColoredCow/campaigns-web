@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import internal from 'stream';
 
 export interface ApiResource {
   total: number;
@@ -55,4 +54,8 @@ export interface Tag {
 
 export interface CampaignResource extends ApiResource {
   data: Campaign[];
+}
+
+export interface SubscribersResource extends ApiResource {
+  data: Subscribers[];
 }

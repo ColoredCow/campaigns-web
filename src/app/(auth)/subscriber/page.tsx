@@ -117,10 +117,10 @@ const Page = () => {
       </div>
       <div className="flex justify-between">
         <div>
-          <Input label="" type="text" placeholder="Search" name="search" />
+          {/* <Input label="" type="text" placeholder="Search" name="search" /> */}
         </div>
         <div className="flex">
-          <Input label="" type="text" placeholder="Search" name="search" />
+          {/* <Input label="" type="text" placeholder="Search" name="search" /> */}
           <Button
             className="ml-2 mt-1"
             onClick={() => console.log('Filter applied')}

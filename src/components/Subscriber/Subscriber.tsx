@@ -27,12 +27,6 @@ const Subscriber = ({
     fetchTagLists();
   }, [subscriber]);
 
-  const initialValues = {
-    email: subscriber?.email ? subscriber.email : '',
-    name: subscriber?.name ? subscriber.name : '',
-    phone: subscriber?.phone ? subscriber.phone : '',
-  };
-
   const tagsList =
     Array.isArray(tags.data) && tags.data.length > 0
       ? tags.data.map((tag: any) => ({
@@ -40,6 +34,12 @@ const Subscriber = ({
           label: tag.name,
         }))
       : [];
+
+  const initialValues = {
+    email: '',
+    name: '',
+    phone: '',
+  };
 
   function handleTagSelection(data: any) {
     if (data.length > 0) {

@@ -38,7 +38,6 @@ const Page = () => {
             </div> */}
           </>,
           <>
-            {console.log(tag, '-->campaign')}
             {/* <div>{campaign.sender_identity.name}</div> */}
             <div className="text-gray-500">
               {/* {campaign.sender_identity.email} */}
@@ -75,11 +74,6 @@ const Page = () => {
             </span>
           )}
         </h2>
-      </div>
-      <div className="flex justify-between">
-        <div>
-          {/* <Input label="" type="text" placeholder="Search" name="search" /> */}
-        </div>
         <div>
           <Button onClick={() => console.log('new tag')}>Create Tag</Button>
         </div>

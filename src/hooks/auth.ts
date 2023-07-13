@@ -28,9 +28,9 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
     data: user,
     error,
     mutate,
-  } = useSWR('/api/user', () =>
+  } = useSWR('/api/profile', () =>
     api
-      .get('/api/user')
+      .get('/api/profile')
       .then((response) => response.data)
       .catch((error) => {
         if (error.response.status !== 409) throw error;

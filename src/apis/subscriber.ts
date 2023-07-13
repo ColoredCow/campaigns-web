@@ -18,7 +18,7 @@ export const createSubscriber = async (subscriber: Subscribers) => {
 };
 
 export const updateSubscriber = async (
-  subscriberId: string | null,
+  subscriberId: number,
   subscriber: Subscribers
 ) => {
   try {

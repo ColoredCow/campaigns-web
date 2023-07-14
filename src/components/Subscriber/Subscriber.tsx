@@ -15,7 +15,7 @@ const Subscriber = ({
   onSubmit: any;
   selectedOptions: any;
   setSelectedOptions: any;
-  subscriber?: any;
+  subscriber: any;
 }) => {
   const [tags, setTags] = useState([]);
 

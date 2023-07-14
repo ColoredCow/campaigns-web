@@ -32,7 +32,7 @@ export const updateSubscriber = async (
   }
 };
 
-export const getSubscriber = async (subscriberId: string | null) => {
+export const getSubscriber = async (subscriberId: number) => {
   try {
     const response = await api.get(`/api/subscriber/${subscriberId}`);
     return response;

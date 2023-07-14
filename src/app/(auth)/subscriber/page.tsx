@@ -29,7 +29,7 @@ const Page = () => {
   });
 
   useEffect(() => {
-    const showPopupModel = async (id: number) => {
+    const showDeleteConfirmationModal = async (id: number) => {
       const result = confirm(
         'Are you sure you want to delete this subscriber?'
       );
@@ -49,7 +49,6 @@ const Page = () => {
           <>
             <div>{subscriber.email}</div>
             <div>{subscriber.name}</div>
-            {/* <div className="text-gray-500">{campaign.tag.name}</div> */}
           </>,
           <>
             <div>{subscriber.designation}</div>
@@ -71,7 +70,7 @@ const Page = () => {
               </Link>
               <a
                 type="button"
-                onClick={() => showPopupModel(subscriber.id)}
+                onClick={() => showDeleteConfirmationModal(subscriber.id)}
                 className="text-gray-400 hover:text-indigo-700"
               >
                 <TrashIcon className="h-5 w-5" />

@@ -2,14 +2,14 @@
 
 import { getUsers } from '@/apis/user';
 import Table from '@/components/Table';
-import { Users, TableData } from '@/utils/types';
+import { User, TableData } from '@/utils/types';
 import { useEffect, useState } from 'react';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { UsersIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 const Page = () => {
-  const [users, setUsers] = useState<Users | undefined>(undefined);
+  const [users, setUsers] = useState<User | undefined>(undefined);
 
   const [tableData, setTableData] = useState<TableData>({
     headers: ['Name', 'Email'],
@@ -25,7 +25,7 @@ const Page = () => {
 
   useEffect(() => {
     if (users) {
-      const rows = users.data.map((user: Users) => {
+      const rows = users.data.map((user: User) => {
         return [
           <>
             <div>{user.name}</div>
@@ -35,9 +35,15 @@ const Page = () => {
           </>,
           <>
             <div className="flex justify-end">
-              <a href="#" className="text-gray-400 hover:text-indigo-700">
+              <Link
+                href={{
+                  pathname: '/user/edit/',
+                  query: { id: user.id },
+                }}
+                className="text-gray-400 hover:text-indigo-700"
+              >
                 <PencilSquareIcon className="h-5 w-5" />
-              </a>
+              </Link>
               <a href="#" className="ml-2 text-gray-400 hover:text-red-600">
                 <TrashIcon className="h-5 w-5" />
               </a>

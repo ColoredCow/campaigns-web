@@ -50,9 +50,3 @@ export const deleteSubscriber = async (subscriberId: number) => {
     throw error;
   }
 };
-
-export const getTags = async () => {
-  const response = await api.get('/api/tag');
-  const data = await response.data;
-  return data;
-};

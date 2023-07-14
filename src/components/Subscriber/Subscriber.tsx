@@ -1,7 +1,7 @@
 import Input from '@/components/Input';
 import MultiSelect from '@/components/MultiSelect';
 import Button from '@/components/Button';
-import { getTags } from '@/apis/subscriber';
+import { getTags } from '@/apis/tag';
 import { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import { subscriberValidationSchema } from '@/validations/subscriber';

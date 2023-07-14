@@ -25,7 +25,7 @@ const Subscriber = ({
     };
 
     fetchTagLists();
-  }, [subscriber]);
+  }, []);
 
   const tagsList =
     Array.isArray(tags.data) && tags.data.length > 0

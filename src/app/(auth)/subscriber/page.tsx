@@ -19,16 +19,13 @@ const Page = () => {
     setSubscribers(await getSubscribers());
   };
 
-  useEffect(() => {
-    fetchSubscribers();
-  }, []);
-
   const [tableData, setTableData] = useState<TableData>({
     headers: ['Details', 'List'],
     rows: [],
   });
 
   useEffect(() => {
+    fetchSubscribers();
     const showDeleteConfirmationModal = async (id: number) => {
       const result = confirm(
         'Are you sure you want to delete this subscriber?'

@@ -4,12 +4,11 @@ export const getAcronym = (str: string): string => {
 };
 
 export const extractValuesFromOptions = (multiSelectedOption: object) => {
-  return (
-    multiSelectedOption?.length &&
-    multiSelectedOption.map(
-      (selectedOption: { value: number }) => selectedOption.value
-    )
-  );
+  return multiSelectedOption?.length
+    ? multiSelectedOption.map(
+        (selectedOption: { value: number }) => selectedOption.value
+      )
+    : [];
 };
 
 export const mapTagsToSelectOptions = (tags: object) => {

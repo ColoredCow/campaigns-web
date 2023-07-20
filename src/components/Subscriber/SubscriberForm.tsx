@@ -11,12 +11,12 @@ const SubscriberForm = ({
   onSubmit,
   selectedOptions,
   setSelectedOptions,
-  subscriber = null,
+  subscriber = {},
 }: {
-  onSubmit: any;
+  onSubmit: (value: any) => void;
   selectedOptions: Array<any>;
-  setSelectedOptions: any;
-  subscriber: any;
+  setSelectedOptions: (value: any) => void;
+  subscriber: object;
 }) => {
   const [tags, setTags] = useState([]);
 
@@ -36,16 +36,12 @@ const SubscriberForm = ({
 
   const tagsList = mapTagsToSelectOptions(tags.data);
 
-  if (subscriber) {
+  if (Object.keys(subscriber).length) {
     initialValues = { ...initialValues, ...subscriber };
   }
 
   function handleTagSelection(data: Array<any>) {
-    if (data.length > 0) {
-      setSelectedOptions(data);
-    } else {
-      setSelectedOptions([]);
-    }
+    setSelectedOptions(data);
   }
 
   return (

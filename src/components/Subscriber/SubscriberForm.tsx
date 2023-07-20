@@ -6,18 +6,24 @@ import { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import { subscriberValidationSchema } from '@/validations/subscriber';
 
-const Subscriber = ({
+const SubscriberForm = ({
   onSubmit,
   selectedOptions,
   setSelectedOptions,
   subscriber = null,
 }: {
   onSubmit: any;
-  selectedOptions: any;
+  selectedOptions: Array<any>;
   setSelectedOptions: any;
   subscriber: any;
 }) => {
   const [tags, setTags] = useState([]);
+
+  let initialValues = {
+    email: '',
+    name: '',
+    phone: '',
+  };
 
   useEffect(() => {
     const fetchTagLists = async () => {
@@ -35,13 +41,11 @@ const Subscriber = ({
         }))
       : [];
 
-  const initialValues = {
-    email: subscriber?.email ? subscriber.email : '',
-    name: subscriber?.name ? subscriber.name : '',
-    phone: subscriber?.phone ? subscriber.phone : '',
-  };
+  if (subscriber) {
+    initialValues = { ...initialValues, ...subscriber };
+  }
 
-  function handleTagSelection(data: any) {
+  function handleTagSelection(data: Array<any>) {
     if (data.length > 0) {
       setSelectedOptions(data);
     } else {
@@ -97,4 +101,4 @@ const Subscriber = ({
   );
 };
 
-export default Subscriber;
+export default SubscriberForm;

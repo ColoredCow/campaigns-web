@@ -1,11 +1,12 @@
 'use client';
 
-import Subscriber from '@/components/Subscriber/Subscriber';
+import SubscriberForm from '@/components/Subscriber/SubscriberForm';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { updateSubscriber, getSubscriber } from '@/apis/subscriber';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { getMultiSelectOptions } from '@/utils/common';
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -32,11 +33,8 @@ const Page = () => {
   }, []);
 
   const onSubmit = async (values: any) => {
-    if (selectedOptions.length > 0) {
-      values.tags = selectedOptions.map(
-        (selectedOption: { value: any }) => selectedOption.value
-      );
-    }
+    values.tags = getMultiSelectOptions(selectedOptions);
+
     try {
       await updateSubscriber(id, values);
       toast.success('Subscriber updated successfully');
@@ -54,7 +52,7 @@ const Page = () => {
           <span className="ml-1 text-3xl">Edit Subscriber</span>
         </h2>
       </div>
-      <Subscriber
+      <SubscriberForm
         onSubmit={onSubmit}
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}

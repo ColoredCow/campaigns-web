@@ -65,13 +65,12 @@ const Page = () => {
               >
                 <PencilSquareIcon className="h-5 w-5" />
               </Link>
-              <a
-                type="button"
+              <span
                 onClick={() => showDeleteConfirmationModal(subscriber.id)}
                 className="text-gray-400 hover:text-indigo-700"
               >
                 <TrashIcon className="h-5 w-5" />
-              </a>
+              </span>
             </div>
           </>,
         ];

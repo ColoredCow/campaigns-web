@@ -9,10 +9,10 @@ const MultiSelect = ({
   isSearchable,
 }: {
   label: string;
-  options: any;
+  options: object[];
   placeholder: string;
-  value: any;
-  onChange: any;
+  value: object[];
+  onChange: (value: any) => void;
   isSearchable: boolean;
 }) => {
   return (

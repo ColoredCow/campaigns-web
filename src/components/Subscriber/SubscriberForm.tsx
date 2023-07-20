@@ -81,6 +81,7 @@ const SubscriberForm = ({
                 name="phone"
                 label="Phone"
                 placeholder="Enter Phone"
+                optional={true}
               />
               <div>
                 <MultiSelect

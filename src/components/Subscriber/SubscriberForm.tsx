@@ -5,6 +5,7 @@ import { getTags } from '@/apis/tag';
 import { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import { subscriberValidationSchema } from '@/validations/subscriber';
+import { mapTagsToSelectOptions } from '@/utils/common';
 
 const SubscriberForm = ({
   onSubmit,
@@ -33,13 +34,7 @@ const SubscriberForm = ({
     fetchTagLists();
   }, []);
 
-  const tagsList =
-    Array.isArray(tags.data) && tags.data.length > 0
-      ? tags.data.map((tag: any) => ({
-          value: tag.id,
-          label: tag.name,
-        }))
-      : [];
+  const tagsList = mapTagsToSelectOptions(tags.data);
 
   if (subscriber) {
     initialValues = { ...initialValues, ...subscriber };

@@ -6,14 +6,14 @@ import { createSubscriber } from '@/apis/subscriber';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { getMultiSelectOptions } from '@/utils/common';
+import { extractValuesFromOptions } from '@/utils/common';
 
 const Page = () => {
   const router = useRouter();
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const onSubmit = async (values: any) => {
-    values.tags = getMultiSelectOptions(selectedOptions);
+    values.tags = extractValuesFromOptions(selectedOptions);
     try {
       await createSubscriber(values);
       toast.success('Subscriber created successfully');

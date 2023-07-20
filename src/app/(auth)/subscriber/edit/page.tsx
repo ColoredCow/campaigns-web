@@ -6,7 +6,10 @@ import { updateSubscriber, getSubscriber } from '@/apis/subscriber';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { getMultiSelectOptions } from '@/utils/common';
+import {
+  mapTagsToSelectOptions,
+  extractValuesFromOptions,
+} from '@/utils/common';
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -19,11 +22,7 @@ const Page = () => {
     const fetchSubscriber = async () => {
       try {
         const { data } = await getSubscriber(id);
-        setSelectedOptions(
-          data.tags.map((tag: { name: string; id: number }) => {
-            return { value: tag.id, label: tag.name };
-          })
-        );
+        setSelectedOptions(mapTagsToSelectOptions(data.tags));
         setSubscriber(data);
       } catch (error: any) {
         toast.error(error.response.data.message);
@@ -33,8 +32,7 @@ const Page = () => {
   }, []);
 
   const onSubmit = async (values: any) => {
-    values.tags = getMultiSelectOptions(selectedOptions);
-
+    values.tags = extractValuesFromOptions(selectedOptions);
     try {
       await updateSubscriber(id, values);
       toast.success('Subscriber updated successfully');

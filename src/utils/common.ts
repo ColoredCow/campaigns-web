@@ -3,11 +3,21 @@ export const getAcronym = (str: string): string => {
   return (matches || []).join('');
 };
 
-export const getMultiSelectOptions = (multiSelectedOption: any) => {
+export const extractValuesFromOptions = (multiSelectedOption: object) => {
   return (
-    multiSelectedOption.length &&
+    multiSelectedOption?.length &&
     multiSelectedOption.map(
-      (selectedOption: { value: any }) => selectedOption.value
+      (selectedOption: { value: number }) => selectedOption.value
     )
+  );
+};
+
+export const mapTagsToSelectOptions = (tags: object) => {
+  return (
+    tags?.length &&
+    tags.map((tag: { id: number; name: string }) => ({
+      value: tag.id,
+      label: tag.name,
+    }))
   );
 };

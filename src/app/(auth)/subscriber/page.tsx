@@ -40,7 +40,6 @@ const Page = () => {
             <div className="text-gray-500">{subscriber.address}</div>
           </>,
           <>
-            {console.log(subscriber, '-->subscriber')}
             <div className="text-gray-500">{/* {subscriber.comments} */}</div>
           </>,
           <>
@@ -83,20 +82,6 @@ const Page = () => {
           </Button>
           <Button onClick={() => console.log('bulk upload')}>
             Bulk upload
-          </Button>
-        </div>
-      </div>
-      <div className="flex justify-between">
-        <div>
-          <Input label="" type="text" placeholder="Search" name="search" />
-        </div>
-        <div className="flex">
-          <Input label="" type="text" placeholder="Search" name="search" />
-          <Button
-            className="ml-2 mt-1"
-            onClick={() => console.log('Filter applied')}
-          >
-            Filter
           </Button>
         </div>
       </div>

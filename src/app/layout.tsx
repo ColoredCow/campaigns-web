@@ -1,6 +1,7 @@
 import './globals.css';
 import React from 'react';
 import { Nunito } from 'next/font/google';
+import Toast from '@/components/ToastContainer';
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Toast />
       <body className={nunito.className}>{children}</body>
     </html>
   );

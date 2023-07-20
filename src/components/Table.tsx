@@ -1,8 +1,6 @@
 import { TableData } from '@/utils/types';
 
 const Table = ({ data }: { data: TableData }) => {
-  console.log('table data...', data);
-
   const LoadingSkeleton = () => {
     return [...Array(10)].map((_, count) => (
       <tr className={`${count % 2 ? 'bg-white' : 'bg-gray-100'}`} key={count}>

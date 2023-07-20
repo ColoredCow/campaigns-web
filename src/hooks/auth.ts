@@ -2,10 +2,10 @@ import api from '@/utils/api';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
+import { toast } from 'react-toastify';
 import { setCookie, parseCookies, destroyCookie } from 'nookies';
 
 type loginProps = {
-  setErrors: any;
   email: string;
   password: string;
 };
@@ -29,9 +29,9 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
     data: user,
     error,
     mutate,
-  } = useSWR('/api/user', () =>
+  } = useSWR('/api/profile', () =>
     api
-      .get('/api/user')
+      .get('/api/profile')
       .then((response) => response.data)
       .catch((error) => {
         if (error.response.status !== 409) throw error;
@@ -42,14 +42,11 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
   const csrf = () => api.get('/sanctum/csrf-cookie');
 
   // login
-  const login = async ({ setErrors, ...props }: loginProps) => {
-    setErrors([]);
-
+  const login = async ({ ...props }: loginProps) => {
     await csrf();
 
-    await api
-      .post('/api/login', props)
-      .then(async (resp) => {
+    try {
+      await api.post('/api/login', props).then(async (resp) => {
         setAuthToken(resp.data);
         setCookie(null, 'authToken', resp.data, {
           maxAge: 30 * 24 * 60 * 60,
@@ -57,10 +54,10 @@ export const useAuth = ({ middleware }: { middleware?: any } = {}) => {
         });
         await mutate();
         router.push('/campaign');
-      })
-      .catch((error) => {
-        // Handle error
       });
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+    }
   };
 
   // logout

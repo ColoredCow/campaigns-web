@@ -40,10 +40,6 @@ const SubscriberForm = ({
     initialValues = { ...initialValues, ...subscriber };
   }
 
-  function handleTagSelection(data: Array<any>) {
-    setSelectedOptions(data);
-  }
-
   return (
     <>
       <Formik
@@ -79,7 +75,7 @@ const SubscriberForm = ({
                   options={tagsList}
                   placeholder="Select Tags"
                   value={selectedOptions}
-                  onChange={handleTagSelection}
+                  onChange={(data) => setSelectedOptions(data)}
                   isSearchable={true}
                   label="Select List"
                 />

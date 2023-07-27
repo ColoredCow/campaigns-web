@@ -14,8 +14,11 @@ const Page = () => {
 
   const onSubmit = async (values: any) => {
     values.tags = extractValuesFromOptions(selectedOptions);
+    {
+      console.log(values, '==>values');
+    }
     try {
-      await createSubscriber(values);
+      // await createSubscriber(values);
       toast.success('Subscriber created successfully');
       router.back();
     } catch (error: any) {

@@ -1,5 +1,5 @@
 import Input from '@/components/Input';
-import MultiSelect from '@/components/MultiSelect';
+import SelectField from '@/components/SelectField';
 import Button from '@/components/Button';
 import { getTags } from '@/apis/tag';
 import { useEffect, useState } from 'react';
@@ -9,8 +9,6 @@ import { mapTagsToSelectOptions } from '@/utils/common';
 
 const SubscriberForm = ({
   onSubmit,
-  selectedOptions,
-  setSelectedOptions,
   subscriber = {},
 }: {
   onSubmit: (value: any) => void;
@@ -71,13 +69,13 @@ const SubscriberForm = ({
                 optional={true}
               />
               <div>
-                <MultiSelect
+                <SelectField
+                  name="tags"
                   options={tagsList}
                   placeholder="Select Tags"
-                  value={selectedOptions}
-                  onChange={(data) => setSelectedOptions(data)}
                   isSearchable={true}
                   label="Select List"
+                  isMulti
                 />
               </div>
             </div>

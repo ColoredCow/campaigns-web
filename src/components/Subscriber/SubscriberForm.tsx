@@ -1,19 +1,17 @@
 import Input from '@/components/Input';
-import SelectField from '@/components/SelectField';
 import Button from '@/components/Button';
 import { getTags } from '@/apis/tag';
 import { useEffect, useState } from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { subscriberValidationSchema } from '@/validations/subscriber';
 import { mapTagsToSelectOptions } from '@/utils/common';
+import MultiSelect from '@/components/MultiSelect';
 
 const SubscriberForm = ({
   onSubmit,
   subscriber = {},
 }: {
   onSubmit: (value: any) => void;
-  selectedOptions: Array<any>;
-  setSelectedOptions: (value: any) => void;
   subscriber: object;
 }) => {
   const [tags, setTags] = useState([]);
@@ -22,6 +20,7 @@ const SubscriberForm = ({
     email: '',
     name: '',
     phone: '',
+    tags: [],
   };
 
   useEffect(() => {
@@ -36,6 +35,7 @@ const SubscriberForm = ({
 
   if (Object.keys(subscriber).length) {
     initialValues = { ...initialValues, ...subscriber };
+    initialValues.tags = mapTagsToSelectOptions(subscriber.tags);
   }
 
   return (
@@ -69,13 +69,12 @@ const SubscriberForm = ({
                 optional={true}
               />
               <div>
-                <SelectField
+                <Field
                   name="tags"
-                  options={tagsList}
-                  placeholder="Select Tags"
-                  isSearchable={true}
                   label="Select List"
-                  isMulti
+                  placeholder="Select List"
+                  component={MultiSelect}
+                  options={tagsList}
                 />
               </div>
             </div>

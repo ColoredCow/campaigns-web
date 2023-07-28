@@ -3,22 +3,17 @@
 import SubscriberForm from '@/components/Subscriber/SubscriberForm';
 import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { createSubscriber } from '@/apis/subscriber';
-import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { extractValuesFromOptions } from '@/utils/common';
 
 const Page = () => {
   const router = useRouter();
-  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const onSubmit = async (values: any) => {
-    values.tags = extractValuesFromOptions(selectedOptions);
-    {
-      console.log(values, '==>values');
-    }
+    values.tags = extractValuesFromOptions(values.tags);
     try {
-      // await createSubscriber(values);
+      await createSubscriber(values);
       toast.success('Subscriber created successfully');
       router.back();
     } catch (error: any) {
@@ -34,11 +29,7 @@ const Page = () => {
           <span className="ml-1 text-3xl">New Subscriber</span>
         </h2>
       </div>
-      <SubscriberForm
-        onSubmit={onSubmit}
-        selectedOptions={selectedOptions}
-        setSelectedOptions={setSelectedOptions}
-      />
+      <SubscriberForm onSubmit={onSubmit} />
     </>
   );
 };

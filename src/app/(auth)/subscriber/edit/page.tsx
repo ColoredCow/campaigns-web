@@ -6,23 +6,18 @@ import { updateSubscriber, getSubscriber } from '@/apis/subscriber';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter, useSearchParams } from 'next/navigation';
-import {
-  mapTagsToSelectOptions,
-  extractValuesFromOptions,
-} from '@/utils/common';
+import { extractValuesFromOptions } from '@/utils/common';
 
 const Page = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
   const router = useRouter();
-  const [selectedOptions, setSelectedOptions] = useState([]);
   const [subscriber, setSubscriber] = useState({});
 
   useEffect(() => {
     const fetchSubscriber = async () => {
       try {
         const { data } = await getSubscriber(id);
-        setSelectedOptions(mapTagsToSelectOptions(data.tags));
         setSubscriber(data);
       } catch (error: any) {
         toast.error(error.response.data.message);
@@ -32,7 +27,7 @@ const Page = () => {
   }, []);
 
   const onSubmit = async (values: any) => {
-    values.tags = extractValuesFromOptions(selectedOptions);
+    values.tags = extractValuesFromOptions(values.tags);
     try {
       await updateSubscriber(id, values);
       toast.success('Subscriber updated successfully');
@@ -50,12 +45,7 @@ const Page = () => {
           <span className="ml-1 text-3xl">Edit Subscriber</span>
         </h2>
       </div>
-      <SubscriberForm
-        onSubmit={onSubmit}
-        selectedOptions={selectedOptions}
-        setSelectedOptions={setSelectedOptions}
-        subscriber={subscriber}
-      />
+      <SubscriberForm onSubmit={onSubmit} subscriber={subscriber} />
     </>
   );
 };

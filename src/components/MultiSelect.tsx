@@ -9,7 +9,7 @@ const MultiSelect = ({
 }: {
   field: any;
   form: any;
-  options: Object[];
+  options: any;
   placeholder: string;
   label: string;
 }) => {

@@ -2,7 +2,6 @@
 
 import { getTags } from '@/apis/tag';
 import Button from '@/components/Button';
-import Input from '@/components/Input';
 import Table from '@/components/Table';
 import { Tag, TableData } from '@/utils/types';
 import { TagIcon } from '@heroicons/react/24/outline';

@@ -13,10 +13,10 @@ const MultiSelect = ({
   placeholder: string;
   label: string;
 }) => {
-  function onChange(option: any) {
+  function onChange(option: Array<any>) {
     form.setFieldValue(
       field.name,
-      option ? option.map((item: any) => item) : []
+      option ? option.map((item: object) => item) : []
     );
   }
 

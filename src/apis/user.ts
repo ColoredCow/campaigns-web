@@ -1,4 +1,5 @@
 import api from '@/utils/api';
+import { User } from '@/utils/types';
 
 export const getUsers = async () => {
   const response = await api.get('/api/user');
@@ -6,7 +7,7 @@ export const getUsers = async () => {
   return data;
 };
 
-export const createUser = async (user: any) => {
+export const createUser = async (user: User) => {
   try {
     const response = await api.post('/api/register', user);
     const data = await response.data;
@@ -16,7 +17,7 @@ export const createUser = async (user: any) => {
   }
 };
 
-export const updateUser = async (userId: number, user: any) => {
+export const updateUser = async (userId: number, user: User) => {
   try {
     const response = await api.put(`/api/user/${userId}`, user);
     const data = await response.data;

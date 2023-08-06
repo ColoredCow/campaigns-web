@@ -3,13 +3,25 @@ import Button from '@/components/Button';
 import { Formik, Form } from 'formik';
 import { userValidationSchema } from '@/validations/user';
 
-const User = ({ onSubmit, user }: { onSubmit: any; user: any }) => {
-  const initialValues = {
-    email: user?.email ? user.email : '',
-    name: user?.name ? user.name : '',
+const User = ({
+  onSubmit,
+  user,
+}: {
+  onSubmit: (value: any) => void;
+  user: object;
+}) => {
+  let initialValues = {
+    email: '',
+    name: '',
     password: '',
     confirmPassowrd: '',
   };
+
+  if (Object.keys(user).length) {
+    initialValues = { ...initialValues, ...user };
+  }
+
+  console.log(initialValues);
 
   return (
     <>

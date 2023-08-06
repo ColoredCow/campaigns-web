@@ -1,32 +1,39 @@
 import Select from 'react-select';
 
 const MultiSelect = ({
-  label,
+  field,
+  form,
   options,
   placeholder,
-  value,
-  onChange,
-  isSearchable,
+  label,
 }: {
-  label: string;
-  options: any;
+  field: any;
+  form: any;
+  options: object[];
   placeholder: string;
-  value: any;
-  onChange: any;
-  isSearchable: boolean;
+  label: string;
 }) => {
+  function onChange(option: Array<any>) {
+    form.setFieldValue(
+      field.name,
+      option ? option.map((item: object) => item) : []
+    );
+  }
+
   return (
     <>
       <label className="mb-1 block text-sm font-medium text-gray-700">
         {label}
       </label>
       <Select
-        options={options}
-        placeholder={placeholder}
-        value={value}
+        className="react-select-container"
+        classNamePrefix="react-select"
+        name={field.name}
+        value={field.value}
         onChange={onChange}
-        isSearchable={isSearchable}
-        isMulti
+        options={options}
+        isMulti={true}
+        placeholder={placeholder}
       />
     </>
   );

@@ -41,11 +41,7 @@ const Page = () => {
         return [
           <>
             <div>{user.name}</div>
-          </>,
-          <>
             <div>{user.email}</div>
-          </>,
-          <>
             <div className="flex justify-end">
               <Link
                 href={{

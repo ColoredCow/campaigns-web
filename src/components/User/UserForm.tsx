@@ -3,9 +3,9 @@ import Button from '@/components/Button';
 import { Formik, Form } from 'formik';
 import { userValidationSchema } from '@/validations/user';
 
-const User = ({
+const UserForm = ({
   onSubmit,
-  user,
+  user = {},
 }: {
   onSubmit: (value: any) => void;
   user: object;
@@ -20,8 +20,6 @@ const User = ({
   if (Object.keys(user).length) {
     initialValues = { ...initialValues, ...user };
   }
-
-  console.log(initialValues);
 
   return (
     <>
@@ -67,4 +65,4 @@ const User = ({
   );
 };
 
-export default User;
+export default UserForm;

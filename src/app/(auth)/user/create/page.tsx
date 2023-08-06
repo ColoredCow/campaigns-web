@@ -4,7 +4,7 @@ import { UsersIcon } from '@heroicons/react/24/outline';
 import { createUser } from '@/apis/user';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import User from '@/components/User/User';
+import UserForm from '@/components/User/UserForm';
 
 const Page = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const Page = () => {
             <span className="ml-1 text-3xl">Create user</span>
           </h2>
         </div>
-        <User onSubmit={onSubmit} />
+        <UserForm onSubmit={onSubmit} />
       </div>
     </>
   );

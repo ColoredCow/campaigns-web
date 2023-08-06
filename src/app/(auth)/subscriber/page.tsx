@@ -9,6 +9,7 @@ import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { Subscriber } from '@/utils/types';
 
 const Page = () => {
   const [subscribers, setSubscribers] = useState<
@@ -41,7 +42,7 @@ const Page = () => {
       }
     };
     if (subscribers) {
-      const rows = subscribers.data.map((subscriber) => {
+      const rows = subscribers.data.map((subscriber: Subscriber) => {
         return [
           <>
             <div>{subscriber.email}</div>
@@ -65,13 +66,12 @@ const Page = () => {
               >
                 <PencilSquareIcon className="h-5 w-5" />
               </Link>
-              <a
-                type="button"
+              <span
                 onClick={() => showDeleteConfirmationModal(subscriber.id)}
                 className="text-gray-400 hover:text-indigo-700"
               >
                 <TrashIcon className="h-5 w-5" />
-              </a>
+              </span>
             </div>
           </>,
         ];

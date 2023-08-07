@@ -57,7 +57,9 @@ const UserForm = ({
                 placeholder="Enter Confirm Password"
               />
             </div>
-            <Button type="submit">{user ? 'Update' : 'Create'}</Button>
+            <Button type="submit">
+              {Object.keys(user).length ? 'Update' : 'Create'}
+            </Button>
           </Form>
         }
       </Formik>

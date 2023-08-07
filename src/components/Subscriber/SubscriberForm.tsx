@@ -6,6 +6,7 @@ import { Formik, Form, Field } from 'formik';
 import { subscriberValidationSchema } from '@/validations/subscriber';
 import { mapTagsToSelectOptions } from '@/utils/common';
 import MultiSelect from '@/components/MultiSelect';
+import { extractValuesFromOptions } from '@/utils/common';
 
 const SubscriberForm = ({
   onSubmit,
@@ -38,11 +39,16 @@ const SubscriberForm = ({
     initialValues.tags = mapTagsToSelectOptions(subscriber.tags);
   }
 
+  const handleSubmit = (values: any) => {
+    const tags = extractValuesFromOptions(values.tags);
+    onSubmit({ ...values, tags });
+  };
+
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         validationSchema={subscriberValidationSchema}
         enableReinitialize={true}
       >

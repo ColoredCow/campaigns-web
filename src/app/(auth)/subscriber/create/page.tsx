@@ -5,13 +5,11 @@ import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { createSubscriber } from '@/apis/subscriber';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { extractValuesFromOptions } from '@/utils/common';
 
 const Page = () => {
   const router = useRouter();
 
   const onSubmit = async (values: any) => {
-    values.tags = extractValuesFromOptions(values.tags);
     try {
       await createSubscriber(values);
       toast.success('Subscriber created successfully');

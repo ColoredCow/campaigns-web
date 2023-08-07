@@ -46,23 +46,25 @@ const Page = () => {
           <>
             <div>{user.email}</div>
           </>,
-          <div className="flex justify-end">
-            <Link
-              href={{
-                pathname: `/user/${user.id}/edit`,
-              }}
-              className="text-gray-400 hover:text-indigo-700"
-            >
-              <PencilSquareIcon className="h-5 w-5" />
-            </Link>
-            <a
-              type="button"
-              onClick={() => showDeleteConfirmationModal(user.id)}
-              className="ml-2 text-gray-400 hover:text-red-600"
-            >
-              <TrashIcon className="h-5 w-5" />
-            </a>
-          </div>,
+          <>
+            <div className="flex justify-end">
+              <Link
+                href={{
+                  pathname: `/user/${user.id}/edit`,
+                }}
+                className="text-gray-400 hover:text-indigo-700"
+              >
+                <PencilSquareIcon className="h-5 w-5" />
+              </Link>
+              <a
+                type="button"
+                onClick={() => showDeleteConfirmationModal(user.id)}
+                className="ml-2 text-gray-400 hover:text-red-600"
+              >
+                <TrashIcon className="h-5 w-5" />
+              </a>
+            </div>
+          </>,
         ];
       });
       setTableData((data) => ({

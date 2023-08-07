@@ -63,7 +63,7 @@ const Page = () => {
                 }}
                 className="text-gray-400 hover:text-indigo-700"
               >
-                <PencilSquareIcon className="h-w5 w-5" />
+                <PencilSquareIcon className="h-5 w-5" />
               </Link>
               <span
                 onClick={() => showDeleteConfirmationModal(subscriber.id)}

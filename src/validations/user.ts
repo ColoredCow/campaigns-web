@@ -10,7 +10,7 @@ export const userValidationSchema = yup.object({
     .string()
     .min(8, 'Password must be at least 8 characters')
     .required('Password is required'),
-  confirmPassowrd: yup
+  password_confirmation: yup
     .string()
     .required('Confirm Password is required')
     .oneOf([yup.ref('password')], 'Passwords do not match'),

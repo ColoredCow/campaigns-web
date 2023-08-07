@@ -48,8 +48,7 @@ const Page = () => {
           <div className="flex justify-end">
             <Link
               href={{
-                pathname: '/user/edit/',
-                query: { id: user.id },
+                pathname: `/user/${user.id}/edit`,
               }}
               className="text-gray-400 hover:text-indigo-700"
             >

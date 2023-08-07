@@ -4,20 +4,17 @@ import { UsersIcon } from '@heroicons/react/24/outline';
 import { getUser, updateUser } from '@/apis/user';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { UserResource } from '@/utils/types';
+import { useRouter } from 'next/navigation';
 import UserForm from '@/components/User/UserForm';
 
-const Page = () => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get('id');
+const Page = ({ params }: { params: { id: number } }) => {
   const router = useRouter();
   const [user, setUser] = useState({});
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const { data } = await getUser(id);
+        const { data } = await getUser(params.id);
         setUser(data);
       } catch (error: any) {
         toast.error(error.response.data.message);
@@ -28,7 +25,7 @@ const Page = () => {
 
   const onSubmit = async (values: any) => {
     try {
-      await updateUser(id, values);
+      await updateUser(params.id, values);
       toast.success('User updated successfully');
       router.back();
     } catch (error: any) {

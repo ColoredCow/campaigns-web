@@ -14,7 +14,7 @@ const UserForm = ({
     email: '',
     name: '',
     password: '',
-    confirmPassword: '',
+    password_confirmation: '',
   };
 
   if (Object.keys(user).length) {
@@ -52,7 +52,7 @@ const UserForm = ({
               />
               <Input
                 type="password"
-                name="confirmPassowrd"
+                name="password_confirmation"
                 label="Confirm Password"
                 placeholder="Enter Confirm Password"
               />

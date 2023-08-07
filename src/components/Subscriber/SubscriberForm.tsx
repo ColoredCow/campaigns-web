@@ -84,7 +84,9 @@ const SubscriberForm = ({
                 />
               </div>
             </div>
-            <Button type="submit">{subscriber ? 'Update' : 'Create'}</Button>
+            <Button type="submit">
+              {Object.keys(subscriber).length ? 'Update' : 'Create'}
+            </Button>
           </Form>
         }
       </Formik>

@@ -6,7 +6,6 @@ import { updateSubscriber, getSubscriber } from '@/apis/subscriber';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { extractValuesFromOptions } from '@/utils/common';
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -27,7 +26,6 @@ const Page = () => {
   }, []);
 
   const onSubmit = async (values: any) => {
-    values.tags = extractValuesFromOptions(values.tags);
     try {
       await updateSubscriber(id, values);
       toast.success('Subscriber updated successfully');

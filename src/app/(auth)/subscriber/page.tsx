@@ -59,12 +59,11 @@ const Page = () => {
             <div className="flex justify-end">
               <Link
                 href={{
-                  pathname: '/subscriber/edit/',
-                  query: { id: subscriber.id },
+                  pathname: `/subscriber/${subscriber.id}/edit`,
                 }}
                 className="text-gray-400 hover:text-indigo-700"
               >
-                <PencilSquareIcon className="h-5 w-5" />
+                <PencilSquareIcon className="h-w5 w-5" />
               </Link>
               <span
                 onClick={() => showDeleteConfirmationModal(subscriber.id)}

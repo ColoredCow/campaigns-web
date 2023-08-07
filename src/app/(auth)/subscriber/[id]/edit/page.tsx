@@ -5,18 +5,16 @@ import { UserGroupIcon } from '@heroicons/react/24/outline';
 import { updateSubscriber, getSubscriber } from '@/apis/subscriber';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
-const Page = () => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get('id');
+const Page = ({ params }: { params: { id: number } }) => {
   const router = useRouter();
   const [subscriber, setSubscriber] = useState({});
 
   useEffect(() => {
     const fetchSubscriber = async () => {
       try {
-        const { data } = await getSubscriber(id);
+        const { data } = await getSubscriber(params.id);
         setSubscriber(data);
       } catch (error: any) {
         toast.error(error.response.data.message);
@@ -27,7 +25,7 @@ const Page = () => {
 
   const onSubmit = async (values: any) => {
     try {
-      await updateSubscriber(id, values);
+      await updateSubscriber(params.id, values);
       toast.success('Subscriber updated successfully');
       router.back();
     } catch (error: any) {

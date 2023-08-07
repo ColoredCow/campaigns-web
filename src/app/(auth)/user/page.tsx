@@ -8,6 +8,7 @@ import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { UsersIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { User } from '@/utils/types';
 
 const Page = () => {
   const [users, setUsers] = useState<UserResource | undefined>(undefined);
@@ -37,7 +38,7 @@ const Page = () => {
     };
 
     if (users) {
-      const rows = users.data.map((user: any) => {
+      const rows = users.data.map((user: User) => {
         return [
           <>
             <div>{user.name}</div>

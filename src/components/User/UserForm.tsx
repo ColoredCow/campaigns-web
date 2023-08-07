@@ -14,7 +14,7 @@ const UserForm = ({
     email: '',
     name: '',
     password: '',
-    confirmPassowrd: '',
+    confirmPassword: '',
   };
 
   if (Object.keys(user).length) {

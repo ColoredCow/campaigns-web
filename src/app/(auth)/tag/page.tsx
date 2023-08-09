@@ -46,9 +46,9 @@ const Page = () => {
           </>,
           <>
             {/* <div>{moment(campaign.created_at).format('MMM DD, YYYY')}</div>
-          <div className="text-gray-500">
-            {moment(campaign.created_at).format('hh:MM A')}
-          </div> */}
+            <div className="text-gray-500">
+              {moment(campaign.created_at).format('hh:MM A')}
+            </div> */}
           </>,
           <>
             {/* <div>{campaign.sender_identity.name}</div> */}

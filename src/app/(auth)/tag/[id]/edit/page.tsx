@@ -12,7 +12,7 @@ const Page = ({ params }: { params: { id: number } }) => {
   const [tag, setTag] = useState({});
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchTag = async () => {
       try {
         const { data } = await getTag(params.id);
         setTag(data);
@@ -20,7 +20,7 @@ const Page = ({ params }: { params: { id: number } }) => {
         toast.error(error.response.data.message);
       }
     };
-    fetchUser();
+    fetchTag();
   }, []);
 
   const onSubmit = async (values: any) => {

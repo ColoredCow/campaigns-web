@@ -7,12 +7,14 @@ const Input = ({
   label,
   placeholder,
   helpText,
+  optional = false,
 }: {
   type: string;
   name: string;
   label: string;
   placeholder?: string;
   helpText?: string;
+  optional?: boolean;
 }) => {
   return (
     <div className="mb-4 flex flex-col">
@@ -21,6 +23,7 @@ const Input = ({
         className="mb-1 block text-sm font-medium text-gray-700"
       >
         {label}
+        {optional && <span className="text-sm text-gray-500"> (Optional)</span>}
       </label>
       <Field
         name={name}
@@ -39,5 +42,4 @@ const Input = ({
     </div>
   );
 };
-
 export default Input;

@@ -42,11 +42,18 @@ const Page = () => {
         return [
           <>
             <div>{tag.name}</div>
+            {/* <div className="text-gray-500">{campaign.tag.name}</div> */}
           </>,
-          <>{/* VALID SUBSCRIBERS Column Data */}</>,
           <>
+            {/* <div>{moment(campaign.created_at).format('MMM DD, YYYY')}</div>
+          <div className="text-gray-500">
+            {moment(campaign.created_at).format('hh:MM A')}
+          </div> */}
+          </>,
+          <>
+            {/* <div>{campaign.sender_identity.name}</div> */}
             <div className="text-gray-500">
-              {/* INVALID SUBSCRIBERS Column Data */}
+              {/* {campaign.sender_identity.email} */}
             </div>
           </>,
           <>

@@ -38,7 +38,7 @@ const Page = ({ params }: { params: { id: number } }) => {
       <div className="flex justify-between">
         <h2 className="mb-7 flex items-end">
           <UsersIcon className="h-9 w-9" />
-          <span className="ml-1 text-3xl">Edit User</span>
+          <span className="ml-1 text-3xl">Edit Tag</span>
         </h2>
       </div>
       <TagForm onSubmit={onSubmit} tag={tag} />

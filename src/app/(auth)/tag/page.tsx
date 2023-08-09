@@ -1,7 +1,6 @@
 'use client';
 
 import { getTags } from '@/apis/tag';
-import Input from '@/components/Input';
 import Table from '@/components/Table';
 import { Tag, TableData } from '@/utils/types';
 import { TagIcon } from '@heroicons/react/24/outline';
@@ -67,11 +66,6 @@ const Page = () => {
             </span>
           )}
         </h2>
-      </div>
-      <div className="flex justify-between">
-        <div>
-          <Input label="" type="text" placeholder="Search" name="search" />
-        </div>
         <div>
           <Link
             className="flex rounded-lg bg-indigo-700 px-4 py-2 text-white hover:bg-indigo-800"

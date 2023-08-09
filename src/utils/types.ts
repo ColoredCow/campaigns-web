@@ -38,12 +38,12 @@ export interface SenderIdentity {
   email: string;
 }
 
-export interface Users {
-  data: any;
-  total: ReactNode;
-  map(arg0: (user: Users) => import('react').JSX.Element[]): unknown;
+export interface User {
+  id: number;
   name: string;
   email: string;
+  password: string;
+  password_confirmation: string;
 }
 
 export interface Tag {
@@ -56,4 +56,8 @@ export interface CampaignResource extends ApiResource {
 
 export interface SubscriberResource extends ApiResource {
   data: Subscriber[];
+}
+
+export interface UserResource extends ApiResource {
+  data: User[];
 }

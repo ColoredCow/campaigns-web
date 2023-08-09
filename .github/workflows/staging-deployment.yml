@@ -1,0 +1,40 @@
+name: Staging Deployment
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to staging
+        uses: appleboy/ssh-action@v1.0.0
+
+        with:
+          host: ${{ secrets.UAT_SSH_HOST }}
+          username: ${{ secrets.UAT_SSH_USERNAME }}
+          key: ${{ secrets.UAT_SSH_PRIVATE_KEY }}
+
+      - name: Go to the directory
+        run: cd ${{ secrets.UAT_SSH_BUILD_DIRECTORY }}
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.13.2'
+
+      - name: Pulling latest code
+        run: git checkout -f
+          git pull origin main
+
+      - name: Clean the cache
+        run: npm cache clean --force
+
+      - name: Install Project Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build

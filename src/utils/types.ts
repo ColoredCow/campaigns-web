@@ -47,6 +47,7 @@ export interface User {
 }
 
 export interface Tag {
+  id: number;
   name: string;
 }
 
@@ -60,4 +61,8 @@ export interface SubscriberResource extends ApiResource {
 
 export interface UserResource extends ApiResource {
   data: User[];
+}
+
+export interface TagResource extends ApiResource {
+  data: Tag[];
 }

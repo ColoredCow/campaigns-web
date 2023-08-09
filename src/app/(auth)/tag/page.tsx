@@ -2,27 +2,41 @@
 
 import { getTags } from '@/apis/tag';
 import Table from '@/components/Table';
-import { Tag, TableData } from '@/utils/types';
+import { Tag, TableData, TagResource } from '@/utils/types';
 import { TagIcon } from '@heroicons/react/24/outline';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { deleteTag } from '@/apis/tag';
+import { toast } from 'react-toastify';
 
 const Page = () => {
-  const [tags, setTags] = useState<Tag | undefined>(undefined);
+  const [tags, setTags] = useState<TagResource | undefined>(undefined);
   const [tableData, setTableData] = useState<TableData>({
     headers: ['Name', 'Valid Subscribers', 'Invalid Subscribers'],
     rows: [],
   });
 
-  useEffect(() => {
-    const fetchTags = async () => {
-      setTags(await getTags());
-    };
-    fetchTags();
-  }, []);
+  const fetchTags = async () => {
+    setTags(await getTags());
+  };
 
   useEffect(() => {
+    fetchTags();
+    const showDeleteConfirmationModal = async (id: number) => {
+      const result = confirm(
+        'Are you sure you want to delete this subscriber?'
+      );
+      if (result) {
+        try {
+          await deleteTag(id);
+          toast.success('Tag deleted successfully');
+          fetchTags();
+        } catch (error: any) {
+          toast.error(error.response.data.message);
+        }
+      }
+    };
     if (tags) {
       const rows = tags.data.map((tag: Tag) => {
         return [
@@ -37,12 +51,18 @@ const Page = () => {
           </>,
           <>
             <div className="flex justify-end">
-              <a href="#" className="text-gray-400 hover:text-indigo-700">
+              <Link
+                href={{ pathname: `/tag/${tag.id}/edit` }}
+                className="text-gray-400 hover:text-indigo-700"
+              >
                 <PencilSquareIcon className="h-5 w-5" />
-              </a>
-              <a href="#" className="ml-2 text-gray-400 hover:text-red-600">
+              </Link>
+              <span
+                onClick={() => showDeleteConfirmationModal(tag.id)}
+                className="text-gray-400 hover:text-indigo-700"
+              >
                 <TrashIcon className="h-5 w-5" />
-              </a>
+              </span>
             </div>
           </>,
         ];

@@ -1,12 +1,10 @@
 'use client';
 
 import { TagIcon } from '@heroicons/react/24/outline';
-import { useFormik } from 'formik';
 import { createTag } from '@/apis/tag';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import Tag from '@/components/Forms/Tag';
-import { tagValidationSchema } from '@/validations/tag';
+import TagForm from '@/components/Tag/TagForm';
 
 const Page = () => {
   const router = useRouter();
@@ -20,14 +18,6 @@ const Page = () => {
     }
   };
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-    },
-    onSubmit: onSubmit,
-    validationSchema: tagValidationSchema,
-  });
-
   return (
     <div className="flex flex-col">
       <div className="flex justify-between">
@@ -36,7 +26,7 @@ const Page = () => {
           <span className="ml-1 text-3xl">New Tag</span>
         </h2>
       </div>
-      <Tag formik={formik} btnName="Create" />
+      <TagForm onSubmit={onSubmit} />
     </div>
   );
 };

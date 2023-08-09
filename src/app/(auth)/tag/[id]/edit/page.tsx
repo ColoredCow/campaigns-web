@@ -26,7 +26,7 @@ const Page = ({ params }: { params: { id: number } }) => {
   const onSubmit = async (values: any) => {
     try {
       await updateTag(params.id, values);
-      toast.success('User updated successfully');
+      toast.success('Tag updated successfully');
       router.back();
     } catch (error: any) {
       toast.error(error.response.data.message);

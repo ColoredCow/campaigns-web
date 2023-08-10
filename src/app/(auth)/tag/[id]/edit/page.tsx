@@ -1,6 +1,6 @@
 'use client';
 
-import { UsersIcon } from '@heroicons/react/24/outline';
+import { TagIcon } from '@heroicons/react/24/outline';
 import { getTag, updateTag } from '@/apis/tag';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -37,7 +37,7 @@ const Page = ({ params }: { params: { id: number } }) => {
     <>
       <div className="flex justify-between">
         <h2 className="mb-7 flex items-end">
-          <UsersIcon className="h-9 w-9" />
+          <TagIcon className="h-9 w-9" />
           <span className="ml-1 text-3xl">Edit Tag</span>
         </h2>
       </div>
